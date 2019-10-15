@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Zadanie1
 {
-    public class Class1
+    public class DataRepository
     {
+        private DataContext dataContext;
     }
 }
