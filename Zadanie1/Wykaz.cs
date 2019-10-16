@@ -9,7 +9,18 @@ namespace Zadanie1
     class Wykaz
     {
         private String imie;
+        public string Imie
+        {
+            get { return imie; }
+            set { this.imie = value; }
+        }
+
         private String nazwisko;
+        public string Nazwisko
+        {
+            get { return nazwisko; }
+            set { this.nazwisko = value; }
+        }
 
         Wykaz(String imie, String nazwisko)
         {
