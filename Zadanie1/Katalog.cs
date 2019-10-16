@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zadanie1
 {
-    class Wykaz
+    class Katalog
     {
         private String nazwa;
         public string Nazwa
@@ -22,7 +22,7 @@ namespace Zadanie1
             set { this.opis = value; }
         }
 
-        Wykaz(String nazwa, String opis)
+        Katalog(String nazwa, String opis)
         {
             this.nazwa = nazwa;
             this.opis = opis;
