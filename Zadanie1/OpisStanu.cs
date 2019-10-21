@@ -19,7 +19,7 @@ namespace Zadanie1
             this.ksiazka = ksiazka;
             this.dataZakupu = dataZakupu;
             this.stanMagazynowy = stanMagazynowy;
-            this.cenaNetto = opis;
+            this.cenaNetto = cenaNetto;
             this.podatek = podatek;
         }
     }

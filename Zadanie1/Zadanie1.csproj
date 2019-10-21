@@ -54,6 +54,7 @@
     <Compile Include="Zdarzenie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataContext.cs" />
+    <Compile Include="DataFill.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
  </Project>
