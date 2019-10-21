@@ -24,7 +24,7 @@ namespace Zadanie1
         private String autor;
         public string Autor
         {
-            get { return autor }
+            get { return autor; }
             set { this.autor = value; }
         }
 
