@@ -9,18 +9,14 @@ namespace Zadanie1
     class OpisStanu
     {
         private Katalog ksiazka;
-        private DateTime dataZakupu;
+        private int cena;
         private int stanMagazynowy;
-        private int cenaNetto;
-        private int podatek;
 
-        OpisStanu(Katalog ksiazka, DateTime dataZakupu, int stanMagazynowy, int cenaNetto, int podatek)
+        OpisStanu(Katalog ksiazka, int cena, int stanMagazynowy)
         {
             this.ksiazka = ksiazka;
-            this.dataZakupu = dataZakupu;
+            this.cena = cena;
             this.stanMagazynowy = stanMagazynowy;
-            this.cenaNetto = cenaNetto;
-            this.podatek = podatek;
         }
     }
 }

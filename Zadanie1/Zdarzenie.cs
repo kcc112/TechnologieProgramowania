@@ -10,15 +10,13 @@ namespace Zadanie1
     {
         private Wykaz wykaz;
         private OpisStanu opisStanu;
-        private DateTime dataWypozyczenia;
-        private DateTime dataZwrotu;
+        private DateTime dataZakupu;
 
-        Zdarzenie(Wykaz wykaz, OpisStanu opisStanu, DateTime dataWypozyczenia, DateTime dataZwrotu)
+        Zdarzenie(Wykaz wykaz, OpisStanu opisStanu, DateTime dataZakupu)
         {
             this.wykaz = wykaz;
             this.opisStanu = opisStanu;
-            this.dataWypozyczenia = dataWypozyczenia;
-            this.dataZwrotu = dataZwrotu;
+            this.dataZakupu = dataZakupu;
         }
     }
 }
