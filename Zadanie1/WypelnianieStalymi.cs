@@ -13,15 +13,15 @@ namespace Zadanie1
         {
             Dictionary<int, Katalog> katalogi = new Dictionary<int, Katalog>();
             katalogi.Add(new Katalog("Pan Tadeusz",
-                                    "To spisana trzynastozg³oskowcem, zawarta w dwunastu ksiêgach opowieœæ o szlachcie polskiej pocz¹tku XIX wieku.",
+                                    "To spisana trzynastozgloskowcem, zawarta w dwunastu ksiegach opowiesc o szlachcie polskiej poczatku XIX wieku.",
                                     "Adam Mickiewicz"));
 
             katalogi.Add(new Katalog("Kordian",
-                                    "Dramat romantyczny autorstwa Juliusza S³owackiego.",
-                                    "Juliusz S³owacki"));
+                                    "Dramat romantyczny autorstwa Juliusza Slowackiego.",
+                                    "Juliusz Slowacki"));
 
             katalogi.Add(new Katalog("Dziady",
-                                    "To dzie³o niezwykle bogate w przeró¿ne treœci oraz poruszaj¹ce liczne, skomplikowane oraz zaanga¿owane spo³ecznie, zagadnienia.",
+                                    "To dzielo niezwykle bogate w przerozne tresci oraz poruszajace liczne, skomplikowane oraz zaangazowane spolecznie, zagadnienia.",
                                     "Adam Mickiewicz"));
 
             List<OpisStanu> opisyStanu = new List<OpisStanu>();
@@ -42,9 +42,9 @@ namespace Zadanie1
             wykazy.Add(new Wykaz("Dawid", "Papis"));
             wykazy.Add(new Wykaz("Maciej", "Pastuszak"));
             wykazy.Add(new Wykaz("Mateusz", "Polowczyk"));
-            wykazy.Add(new Wykaz("Bart³omiej", "Kijek"));
+            wykazy.Add(new Wykaz("Kamil", "Kijek"));
             wykazy.Add(new Wykaz("Piotr", "Sulkowski"));
-            wykazy.Add(new Wykaz("Bartosz", "Biliñski"));
+            wykazy.Add(new Wykaz("Bartosz", "Bilinski"));
 
             ObservableCollection<Zdarzenie> zdarzenia = new ObservableCollection<Zdarzenie>();
             zdarzenia.Add(new Zdarzenie(w1, o1, new DateTime(2017, 10, 1, 12, 4, 18)));
