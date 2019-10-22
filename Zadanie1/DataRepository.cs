@@ -3,24 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Testy")]
 
 namespace Zadanie1
 {
-    public class DataRepository
+    class DataRepository
     {
         private DataContext dataContext;
 
-        void AddKatalog(Katalog k)
+        public DataRepository(DataContext context)
         {
-            dataContext.katalogi.Add(dataContext.katalogi.Count, k);
+            this.dataContext = context;
         }
 
-        Katalog GetKatalog(int id)
+        public void AddKatalog(Katalog k, int id)
+        {
+            dataContext.katalogi.Add(id, k);
+        }
+
+        public Katalog GetKatalog(int id)
         {
             return dataContext.katalogi[id];
         }
 
-        Dictionary<int, Katalog> GetAll()
+        public Dictionary<int, Katalog> GetAllKatalog()
         {
             return dataContext.katalogi;
         }
