@@ -9,10 +9,10 @@ namespace Zadanie1
     class OpisStanu
     {
         private Katalog ksiazka;
-        private int cena;
+        private double cena;
         private int stanMagazynowy;
 
-        OpisStanu(Katalog ksiazka, int cena, int stanMagazynowy)
+        public OpisStanu(Katalog ksiazka, double cena, int stanMagazynowy)
         {
             this.ksiazka = ksiazka;
             this.cena = cena;
