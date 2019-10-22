@@ -8,27 +8,28 @@ namespace Zadanie1
 {
     class Katalog
     {
-        private String tytul;
+        private string tytul;
+        private string autor;
+        private string opis;
+
         public string Tytul
         {
             get { return tytul; }
             set { this.tytul = value; }
         }
 
-        private String opis;
         public string Opis {
             get { return opis; }
             set { this.opis = value; }
         }
 
-        private String autor;
         public string Autor
         {
             get { return autor; }
             set { this.autor = value; }
         }
 
-        Katalog(String nazwa, String opis, String autor)
+        public Katalog(string tytul, string opis, string autor)
         {
             this.tytul = tytul;
             this.opis = opis;

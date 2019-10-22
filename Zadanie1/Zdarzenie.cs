@@ -12,7 +12,7 @@ namespace Zadanie1
         private OpisStanu opisStanu;
         private DateTime dataZakupu;
 
-        Zdarzenie(Wykaz wykaz, OpisStanu opisStanu, DateTime dataZakupu)
+        public Zdarzenie(Wykaz wykaz, OpisStanu opisStanu, DateTime dataZakupu)
         {
             this.wykaz = wykaz;
             this.opisStanu = opisStanu;

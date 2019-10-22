@@ -8,10 +8,10 @@ namespace Zadanie1
 {
     class Wykaz
     {
-        private String imie;
-        private String nazwisko;
+        private string imie;
+        private string nazwisko;
 
-        Wykaz(String imie, String nazwisko)
+        public Wykaz(string imie, string nazwisko)
         {
             this.imie = imie;
             this.nazwisko = nazwisko;
