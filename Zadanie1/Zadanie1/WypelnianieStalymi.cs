@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Testy")]
 
 namespace Zadanie1
 {
     class WypelnianieStalymi : DataFill
     {
-
-        void DataFill.Fill(DataContext context)
+        public void Fill(DataContext context)
         {
             context.katalogi.Add(0, new Katalog("Pan Tadeusz",
                                     "To spisana trzynastozgloskowcem, zawarta w dwunastu ksiegach opowiesc o szlachcie polskiej poczatku XIX wieku.",
