@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Zadanie1
 {
-    public interface DataFill
+    interface IDataRepository
     {
-        void Fill(DataContext context);
+        void AddKatalog(Katalog katalog, int id);
     }
 }

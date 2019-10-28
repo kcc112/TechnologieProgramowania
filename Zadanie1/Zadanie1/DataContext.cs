@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 namespace Zadanie1
 {
-    class DataContext
+    public class DataContext
     {
         public List<Wykaz> wykazy = new List<Wykaz>();
         public Dictionary<int, Katalog> katalogi = new Dictionary<int, Katalog>();

@@ -6,34 +6,24 @@ using System.Threading.Tasks;
 
 namespace Zadanie1
 {
-    class Katalog
+    public class Katalog
     {
-        private string tytul;
-        private string autor;
-        private string opis;
+        public string Tytul { get; set; }
+        public string Autor { get; set; }
+        public string Opis { get; set; }
+        public int Id { get; set; }
 
-        public string Tytul
+        public Katalog(string tytul, string opis, string autor, int id)
         {
-            get { return tytul; }
-            set { this.tytul = value; }
+            Tytul = tytul;
+            Opis = opis;
+            Autor = autor;
+            Id = id;
         }
 
-        public string Opis {
-            get { return opis; }
-            set { this.opis = value; }
-        }
-
-        public string Autor
+        public override string ToString()
         {
-            get { return autor; }
-            set { this.autor = value; }
-        }
-
-        public Katalog(string tytul, string opis, string autor)
-        {
-            this.tytul = tytul;
-            this.opis = opis;
-            this.autor = autor;
+            return $"Tytul: { Tytul } | Autor: { Autor } | Opis: { Opis } | Id: { Id }";
         }
     }
 }

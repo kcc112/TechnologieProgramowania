@@ -7,20 +7,17 @@ namespace Testy
     [TestClass]
     public class DataRepositoryTest
     {
+        #region Katalog Test
         [TestMethod]
-        public void TestAddKatalog()
+        public void Test_Add_Katalog()
         {
-            Katalog k = new Katalog("Pan Tadeusz",
-                                    "To spisana trzynastozgloskowcem, zawarta w dwunastu ksiegach opowiesc o szlachcie polskiej poczatku XIX wieku.",
-                                    "Adam Mickiewicz");
-
-            DataContext dc = new DataContext();
-            DataRepository dr = new DataRepository(dc);
-            dr.AddKatalog(k, 1);
-
-            Assert.AreEqual(k, dr.GetKatalog(1));
-            Assert.AreEqual(k, dr.GetAllKatalog()[1]);
+            DataContext dataContest = new DataContext();
+            DataRepository dataRepository = new DataRepository(dataContest);
+            Katalog katalog = new Katalog("Pan Tadeusz", "opis", "Adam Mickiewicz", 1);
+            dataRepository.AddKatalog(katalog, 1);
+            Assert.AreEqual(1, dataRepository.DataContext.katalogi.Count);
         }
+        #endregion
     }
 }
 
