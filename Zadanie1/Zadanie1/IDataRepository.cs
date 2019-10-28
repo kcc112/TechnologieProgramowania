@@ -21,5 +21,6 @@ namespace Zadanie1
         void UpdateWykaz(Wykaz wykaz, int id);
 
         void DeleteKatalog(int id);
+        void DeleteWykaz(Wykaz wykaz);
     }
 }

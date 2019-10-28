@@ -108,6 +108,17 @@ namespace Testy
             dataRepository.UpdateWykaz(wykaz2, 0);
             Assert.AreEqual(wykaz2, dataRepository.GetWykaz(0));
         }
+
+        [TestMethod]
+        public void Test_Delete_Wykaz()
+        {
+            DataContext dataContest = new DataContext();
+            DataRepository dataRepository = new DataRepository(dataContest);
+            Wykaz wykaz = new Wykaz("Pan Tadeusz", "Adam Mickiewicz");
+            dataRepository.AddWykaz(wykaz);
+            dataRepository.DeleteWykaz(wykaz);
+            Assert.AreEqual(0, dataRepository.DataContext.wykazy.Count);
+        }
         #endregion
     }
 }
