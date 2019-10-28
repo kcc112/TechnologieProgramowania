@@ -35,6 +35,8 @@ namespace Zadanie1
         public Katalog GetKatalog(int id) => DataContext.katalogi[id];
 
         public IEnumerable<Katalog> GetAllKatalog() => DataContext.katalogi.Values;
+
+        public void UpdateKatalog(Katalog katalog, int id) => DataContext.katalogi[id] = katalog;
         #endregion
     }
 }

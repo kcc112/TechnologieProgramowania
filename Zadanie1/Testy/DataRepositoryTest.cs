@@ -40,6 +40,18 @@ namespace Testy
             IEnumerable<Katalog> katalogi = dataRepository.GetAllKatalog();
             Assert.AreEqual(1, katalogi.ToList<Katalog>().Count);
         }
+
+        [TestMethod]
+        public void Test_Update_Katalog()
+        {
+            DataContext dataContest = new DataContext();
+            DataRepository dataRepository = new DataRepository(dataContest);
+            Katalog katalog1 = new Katalog("Pan Tadeusz", "opis", "Adam Mickiewicz", 1);
+            dataRepository.AddKatalog(katalog1, 1);
+            Katalog katalog2 = new Katalog("Pan Mariusz", "opis", "Mariusz Mickiewicz", 1);
+            dataRepository.UpdateKatalog(katalog2, 1);
+            Assert.AreEqual(katalog2, dataRepository.GetKatalog(1));
+        }
         #endregion
     }
 }
