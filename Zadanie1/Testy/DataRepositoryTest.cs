@@ -64,6 +64,18 @@ namespace Testy
             Assert.AreEqual(0, dataRepository.DataContext.katalogi.Count);
         }
         #endregion
+
+        #region Wykaz Test
+        [TestMethod]
+        public void Test_Add_Wykaz()
+        {
+            DataContext dataContest = new DataContext();
+            DataRepository dataRepository = new DataRepository(dataContest);
+            Wykaz wykaz = new Wykaz("Pan Tadeusz", "Adam Mickiewicz");
+            dataRepository.AddWykaz(wykaz);
+            Assert.AreEqual(1, dataRepository.DataContext.wykazy.Count);
+        }
+        #endregion
     }
 }
 

@@ -40,5 +40,9 @@ namespace Zadanie1
 
         public void DeleteKatalog(int id) => DataContext.katalogi.Remove(id);
         #endregion
+
+        #region Wykaz
+        public void AddWykaz(Wykaz wykaz) => DataContext.wykazy.Add(wykaz);
+        #endregion
     }
 }
