@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 namespace Zadanie1
 {
-    class WypelnianieStalymi : DataFill
+    class WypelnianieStalymi : IDataFill
     {
         public void Fill(DataContext context)
         {

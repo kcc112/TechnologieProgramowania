@@ -8,13 +8,18 @@ namespace Zadanie1
 {
     public class Wykaz
     {
-        private string imie;
-        private string nazwisko;
+        public string Imie { get; set; }
+        public string Nazwisko { get; set; }
 
         public Wykaz(string imie, string nazwisko)
         {
-            this.imie = imie;
-            this.nazwisko = nazwisko;
+            Imie = imie;
+            Nazwisko = nazwisko;
+        }
+
+        public override string ToString()
+        {
+            return $"Imie: { Imie } | Nazwisko: { Nazwisko }";
         }
     }
 }
