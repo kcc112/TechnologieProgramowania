@@ -52,6 +52,17 @@ namespace Testy
             dataRepository.UpdateKatalog(katalog2, 1);
             Assert.AreEqual(katalog2, dataRepository.GetKatalog(1));
         }
+
+        [TestMethod]
+        public void Test_Delete_Katalog()
+        {
+            DataContext dataContest = new DataContext();
+            DataRepository dataRepository = new DataRepository(dataContest);
+            Katalog katalog = new Katalog("Pan Tadeusz", "opis", "Adam Mickiewicz", 1);
+            dataRepository.AddKatalog(katalog, 1);
+            dataRepository.DeleteKatalog(1);
+            Assert.AreEqual(0, dataRepository.DataContext.katalogi.Count);
+        }
         #endregion
     }
 }

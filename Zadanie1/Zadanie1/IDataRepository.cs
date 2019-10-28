@@ -12,5 +12,6 @@ namespace Zadanie1
         Katalog GetKatalog(int id);
         IEnumerable<Katalog> GetAllKatalog();
         void UpdateKatalog(Katalog katalog, int id);
+        void DeleteKatalog(int id);
     }
 }
