@@ -54,6 +54,7 @@
     <Compile Include="DataContext.cs" />
     <Compile Include="IDataFill.cs" />
     <Compile Include="WypelnianieStalymi.cs" />
+    <Compile Include="DataService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

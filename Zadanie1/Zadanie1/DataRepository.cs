@@ -12,6 +12,9 @@ namespace Zadanie1
     {
         public DataContext DataContext { get; set; }
 
+        public int BookAdded { get; set; }
+        public int BookBought { get; set; }
+
         public DataRepository(IDataFill dataFill, DataContext dataContext)
         {
             DataContext = dataContext;
@@ -74,6 +77,13 @@ namespace Zadanie1
         #region Zdarzenie
         public void AddZdarzenie(Zdarzenie zdarzenie) => DataContext.zdarzenia.Add(zdarzenie);
 
+        public void ZdarzenieKupno(OpisStanu opisStanu, Wykaz wykaz, DateTime date)
+        {
+            Zdarzenie zdarzenie = new ZdarzenieDodanie(wykaz, opisStanu, date);
+            DataContext.zdarzenia.CollectionChanged += this.OnAddZdarzenieDelete;
+            DataContext.zdarzenia.Add(zdarzenie);
+        }
+
         public Zdarzenie GetZdarzenie(int id) => DataContext.zdarzenia[id];
 
         public IEnumerable<Zdarzenie> GetAllZdarzenie() => DataContext.zdarzenia;
@@ -81,6 +91,12 @@ namespace Zadanie1
         public void UpdateZdarzenie(Zdarzenie zdarzenie, int id) => DataContext.zdarzenia[id] = zdarzenie;
 
         public void DeleteZdarzenie(Zdarzenie zdarzenie) => DataContext.zdarzenia.Remove(zdarzenie);
+        #endregion
+
+        #region Events
+        private void OnAddZdarzenieAdd(object sender, NotifyCollectionChangedEventArgs e) => BookAdded += 1;
+
+        private void OnAddZdarzenieDelete(object sender, NotifyCollectionChangedEventArgs e) => BookBought += 1;
         #endregion
     }
 }
