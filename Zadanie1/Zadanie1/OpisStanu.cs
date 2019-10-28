@@ -8,15 +8,20 @@ namespace Zadanie1
 {
     public class OpisStanu
     {
-        private Katalog ksiazka;
-        private double cena;
-        private int stanMagazynowy;
+        public Katalog Katalog { get; set; }
+        public double Cena { get; set; }
+        public int Jakosc { get; set; }
 
-        public OpisStanu(Katalog ksiazka, double cena, int stanMagazynowy)
+        public OpisStanu(Katalog katalog, double cena, int jakosc)
         {
-            this.ksiazka = ksiazka;
-            this.cena = cena;
-            this.stanMagazynowy = stanMagazynowy;
+            Katalog = katalog;
+            Cena = cena;
+            Jakosc = jakosc;
+        }
+
+        public override string ToString()
+        {
+            return $"Cena: { Cena } | Jakosc: { Jakosc } | " + Katalog.ToString();
         }
     }
 }

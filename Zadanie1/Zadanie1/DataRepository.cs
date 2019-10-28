@@ -52,5 +52,23 @@ namespace Zadanie1
 
         public void DeleteWykaz(Wykaz wykaz) => DataContext.wykazy.Remove(wykaz);
         #endregion
+
+        #region OpisStanu
+        public void AddOpisStanu(OpisStanu opisStanu) => DataContext.opisyStanu.Add(opisStanu);
+        public void AddOpisStanu(Katalog katalog, double cena, int jakosc) => DataContext.opisyStanu.Add(new OpisStanu(katalog, cena, jakosc));
+
+        public OpisStanu GetOpisStanu(int id) => DataContext.opisyStanu[id];
+
+        public IEnumerable<OpisStanu> GetAllOpisStanu() => DataContext.opisyStanu;
+
+        public void UpdateOpisStanu(OpisStanu opisStanu, int id) => DataContext.opisyStanu[id] = opisStanu;
+
+        public void DeleteOpisStanu(OpisStanu opisStanu) => DataContext.opisyStanu.Remove(opisStanu);
+
+        public OpisStanu FindOpisStanu(Katalog katalog, int jakosc)
+        {
+            return DataContext.opisyStanu.Find(opisStanu => opisStanu.Katalog == katalog && opisStanu.Jakosc == jakosc);
+        }
+        #endregion
     }
 }
