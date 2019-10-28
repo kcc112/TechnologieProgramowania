@@ -43,6 +43,8 @@ namespace Zadanie1
 
         #region Wykaz
         public void AddWykaz(Wykaz wykaz) => DataContext.wykazy.Add(wykaz);
+
+        public Wykaz GetWykaz(int id) => DataContext.wykazy[id];
         #endregion
     }
 }

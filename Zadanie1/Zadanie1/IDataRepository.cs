@@ -12,7 +12,8 @@ namespace Zadanie1
         void AddWykaz(Wykaz wykaz);
 
         Katalog GetKatalog(int id);
-  
+        Wykaz GetWykaz(int id);
+
         IEnumerable<Katalog> GetAllKatalog();
 
         void UpdateKatalog(Katalog katalog, int id);
