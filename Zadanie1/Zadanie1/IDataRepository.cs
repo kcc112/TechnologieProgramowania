@@ -33,5 +33,11 @@ namespace Zadanie1
         void DeleteWykaz(Wykaz wykaz);
         void DeleteOpisStanu(OpisStanu opisStanu);
         void DeleteZdarzenie(Zdarzenie zdarzenie);
+
+        //Potrzebne do działania logiki
+        OpisStanu FindOpisStanu(Katalog katalog, int jakosc);
+        void AddKatalog(string tytul, string opis, string autor, int id);
+        void AddOpisStanu(Katalog katalog, double cena, int jakosc);
+        void ZdarzenieKupno(OpisStanu opisStanu, Wykaz wykaz, DateTime date);
     }
 }
