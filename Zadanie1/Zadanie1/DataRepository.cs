@@ -47,6 +47,8 @@ namespace Zadanie1
         public Wykaz GetWykaz(int id) => DataContext.wykazy[id];
 
         public IEnumerable<Wykaz> GetAllWykaz() => DataContext.wykazy;
+
+        public void UpdateWykaz(Wykaz wykaz, int id) => DataContext.wykazy[id] = wykaz;
         #endregion
     }
 }

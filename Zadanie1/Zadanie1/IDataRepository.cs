@@ -18,6 +18,7 @@ namespace Zadanie1
         IEnumerable<Wykaz> GetAllWykaz();
 
         void UpdateKatalog(Katalog katalog, int id);
+        void UpdateWykaz(Wykaz wykaz, int id);
 
         void DeleteKatalog(int id);
     }
