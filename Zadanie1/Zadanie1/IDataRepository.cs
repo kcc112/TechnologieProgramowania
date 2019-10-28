@@ -10,5 +10,6 @@ namespace Zadanie1
     {
         void AddKatalog(Katalog katalog, int id);
         Katalog GetKatalog(int id);
+        IEnumerable<Katalog> GetAllKatalog();
     }
 }
