@@ -6,17 +6,23 @@ using System.Threading.Tasks;
 
 namespace Zadanie1
 {
-    public class Zdarzenie
+    public abstract class Zdarzenie
     {
-        private Wykaz wykaz;
-        private OpisStanu opisStanu;
-        private DateTime dataZakupu;
+        public Wykaz Wykaz { get; set; }
+        public OpisStanu OpisStanu { get; set; }
+        public DateTime Data { get; set; }
 
-        public Zdarzenie(Wykaz wykaz, OpisStanu opisStanu, DateTime dataZakupu)
+        public Zdarzenie(Wykaz wykaz, OpisStanu opisStanu, DateTime data)
         {
-            this.wykaz = wykaz;
-            this.opisStanu = opisStanu;
-            this.dataZakupu = dataZakupu;
+            Wykaz = wykaz;
+            OpisStanu = opisStanu;
+            Data = data;
         }
+
+        public override string ToString()
+        {
+            return $"Data: { Data } | " + Wykaz.ToString() + OpisStanu.ToString();
+        }
+
     }
 }

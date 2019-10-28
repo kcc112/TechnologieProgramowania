@@ -12,7 +12,7 @@ namespace Zadanie1
     {
         public DataContext DataContext { get; set; }
 
-        public DataRepository(DataFill dataFill, DataContext dataContext)
+        public DataRepository(IDataFill dataFill, DataContext dataContext)
         {
             DataContext = dataContext;
             dataFill.Fill(dataContext);
@@ -69,6 +69,18 @@ namespace Zadanie1
         {
             return DataContext.opisyStanu.Find(opisStanu => opisStanu.Katalog == katalog && opisStanu.Jakosc == jakosc);
         }
+        #endregion
+
+        #region Zdarzenie
+        public void AddZdarzenie(Zdarzenie zdarzenie) => DataContext.zdarzenia.Add(zdarzenie);
+
+        public Zdarzenie GetZdarzenie(int id) => DataContext.zdarzenia[id];
+
+        public IEnumerable<Zdarzenie> GetAllZdarzenie() => DataContext.zdarzenia;
+
+        public void UpdateZdarzenie(Zdarzenie zdarzenie, int id) => DataContext.zdarzenia[id] = zdarzenie;
+
+        public void DeleteZdarzenie(Zdarzenie zdarzenie) => DataContext.zdarzenia.Remove(zdarzenie);
         #endregion
     }
 }

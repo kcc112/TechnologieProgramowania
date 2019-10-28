@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zadanie1
 {
-    public interface DataFill
+    public interface IDataFill
     {
         void Fill(DataContext context);
     }
