@@ -9,5 +9,6 @@ namespace Zadanie1
     interface IDataRepository
     {
         void AddKatalog(Katalog katalog, int id);
+        Katalog GetKatalog(int id);
     }
 }

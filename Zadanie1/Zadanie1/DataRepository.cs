@@ -31,6 +31,8 @@ namespace Zadanie1
             Katalog katalog = new Katalog(tytul, opis, autor, id);
             AddKatalog(katalog, id);
         }
+
+        public Katalog GetKatalog(int id) => DataContext.katalogi[id];
         #endregion
     }
 }
