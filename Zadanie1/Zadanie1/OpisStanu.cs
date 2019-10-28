@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zadanie1
 {
-    class OpisStanu
+    public class OpisStanu
     {
         private Katalog ksiazka;
         private double cena;

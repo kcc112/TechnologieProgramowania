@@ -4,33 +4,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("Testy")]
+using System.Collections.Specialized;
 
 namespace Zadanie1
 {
-    class DataRepository
+    public class DataRepository : IDataRepository
     {
-        private DataContext dataContext;
+        public DataContext DataContext { get; set; }
 
-        public DataRepository(DataContext context)
+        public DataRepository(DataFill dataFill, DataContext dataContext)
         {
-            this.dataContext = context;
+            DataContext = dataContext;
+            dataFill.Fill(dataContext);
         }
 
-        public void AddKatalog(Katalog k, int id)
+        public DataRepository(DataContext dataContext) => DataContext = dataContext;
+
+        #region Katalog
+        public void AddKatalog(Katalog katalog, int id)
         {
-            dataContext.katalogi.Add(id, k);
+            DataContext.katalogi.Add(id, katalog);
         }
 
-        public Katalog GetKatalog(int id)
+        public void AddKatalog(string tytul, string opis, string autor, int id)
         {
-            return dataContext.katalogi[id];
+            Katalog katalog = new Katalog(tytul, opis, autor, id);
+            AddKatalog(katalog, id);
         }
 
-        public Dictionary<int, Katalog> GetAllKatalog()
-        {
-            return dataContext.katalogi;
-        }
+        public Katalog GetKatalog(int id) => DataContext.katalogi[id];
+
+        public IEnumerable<Katalog> GetAllKatalog() => DataContext.katalogi.Values;
+
+        public void UpdateKatalog(Katalog katalog, int id) => DataContext.katalogi[id] = katalog;
+
+        public void DeleteKatalog(int id) => DataContext.katalogi.Remove(id);
+        #endregion
+
+        #region Wykaz
+        public void AddWykaz(Wykaz wykaz) => DataContext.wykazy.Add(wykaz);
+
+        public Wykaz GetWykaz(int id) => DataContext.wykazy[id];
+
+        public IEnumerable<Wykaz> GetAllWykaz() => DataContext.wykazy;
+
+        public void UpdateWykaz(Wykaz wykaz, int id) => DataContext.wykazy[id] = wykaz;
+
+        public void DeleteWykaz(Wykaz wykaz) => DataContext.wykazy.Remove(wykaz);
+        #endregion
     }
 }

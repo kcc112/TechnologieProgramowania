@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zadanie1
 {
-    class Zdarzenie
+    public class Zdarzenie
     {
         private Wykaz wykaz;
         private OpisStanu opisStanu;
