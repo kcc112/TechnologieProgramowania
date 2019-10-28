@@ -85,6 +85,17 @@ namespace Testy
             dataRepository.AddWykaz(wykaz);
             Assert.AreEqual(wykaz, dataRepository.GetWykaz(0));
         }
+
+        [TestMethod]
+        public void Test_Get_All_Wykaz()
+        {
+            DataContext dataContest = new DataContext();
+            DataRepository dataRepository = new DataRepository(dataContest);
+            Wykaz wykaz = new Wykaz("Pan Tadeusz", "Adam Mickiewicz");
+            dataRepository.AddWykaz(wykaz);
+            IEnumerable<Wykaz> wykazy = dataRepository.GetAllWykaz();
+            Assert.AreEqual(1, wykazy.ToList<Wykaz>().Count);
+        }
         #endregion
     }
 }

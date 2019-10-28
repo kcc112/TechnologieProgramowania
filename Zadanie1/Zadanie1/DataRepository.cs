@@ -45,6 +45,8 @@ namespace Zadanie1
         public void AddWykaz(Wykaz wykaz) => DataContext.wykazy.Add(wykaz);
 
         public Wykaz GetWykaz(int id) => DataContext.wykazy[id];
+
+        public IEnumerable<Wykaz> GetAllWykaz() => DataContext.wykazy;
         #endregion
     }
 }
