@@ -1,0 +1,3 @@
+﻿Pan Tadeusz;opis;Adam Mickiewicz;0
+Kordian;opis;Juliusz Slowacki;1
+Dziady;opis;Adam Mickiewicz;2
