@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WypelnianiePlik.cs" />
     <Compile Include="IDataRepository.cs" />
     <Compile Include="Wykaz.cs" />
     <Compile Include="DataRepository.cs" />
@@ -55,6 +56,23 @@
     <Compile Include="IDataFill.cs" />
     <Compile Include="WypelnianieStalymi.cs" />
     <Compile Include="DataService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dane\katalogi.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dane\opisyStanu.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dane\wykazy.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dane\zdarzeniaDodania.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dane\zdarzeniaKupna.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
