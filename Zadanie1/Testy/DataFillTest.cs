@@ -1,8 +1,5 @@
-﻿using System;
-using Zadanie1;
+﻿using Zadanie1;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Testy
 {

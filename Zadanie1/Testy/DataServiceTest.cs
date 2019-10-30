@@ -107,5 +107,16 @@ namespace Testy
             dataService.AddOpisStanu(katalog, 10, 10);
             Assert.AreEqual(11, dataContest.opisyStanu.Count);
         }
+
+        [TestMethod]
+        public void Add_Wykaz()
+        {
+            IDataFill dataFill = new WypelnianieStalymi();
+            DataContext dataContest = new DataContext();
+            DataRepository dataRepository = new DataRepository(dataFill, dataContest);
+            DataService dataService = new DataService(dataRepository);
+            dataService.AddWykaz("Pan Tadeusz", "Adam Mickiewicz");
+            Assert.AreEqual(9, dataContest.wykazy.Count);
+        }
     }
 }

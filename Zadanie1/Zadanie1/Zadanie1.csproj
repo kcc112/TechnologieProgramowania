@@ -44,13 +44,13 @@
   <ItemGroup>
     <Compile Include="WypelnianiePlik.cs" />
     <Compile Include="IDataRepository.cs" />
-    <Compile Include="Wykaz.cs" />
+    <Compile Include="Entities\Wykaz.cs" />
     <Compile Include="DataRepository.cs" />
-    <Compile Include="Katalog.cs" />
-    <Compile Include="OpisStanu.cs" />
-    <Compile Include="Zdarzenie.cs" />
-    <Compile Include="ZdarzenieKupno.cs" />
-    <Compile Include="ZdarzenieDodanie.cs" />
+    <Compile Include="Entities\Katalog.cs" />
+    <Compile Include="Entities\OpisStanu.cs" />
+    <Compile Include="Entities\Zdarzenie.cs" />
+    <Compile Include="Entities\ZdarzenieKupno.cs" />
+    <Compile Include="Entities\ZdarzenieDodanie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="IDataFill.cs" />
@@ -58,19 +58,19 @@
     <Compile Include="DataService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dane\katalogi.txt">
+    <Content Include="Data\katalogi.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="dane\opisyStanu.txt">
+    <Content Include="Data\opisyStanu.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="dane\wykazy.txt">
+    <Content Include="Data\wykazy.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="dane\zdarzeniaDodania.txt">
+    <Content Include="Data\zdarzeniaDodania.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="dane\zdarzeniaKupna.txt">
+    <Content Include="Data\zdarzeniaKupna.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

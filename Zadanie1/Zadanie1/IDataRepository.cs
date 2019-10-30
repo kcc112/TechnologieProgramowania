@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Zadanie1
 {
-    interface IDataRepository
+    public interface IDataRepository
     {
         void AddKatalog(Katalog katalog, int id);
         void AddWykaz(Wykaz wykaz);
@@ -39,5 +36,6 @@ namespace Zadanie1
         void AddKatalog(string tytul, string opis, string autor, int id);
         void AddOpisStanu(Katalog katalog, double cena, int jakosc);
         void ZdarzenieKupno(OpisStanu opisStanu, Wykaz wykaz, DateTime date);
+        void AddWykaz(string imie, string nazwisko);
     }
 }
