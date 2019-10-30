@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
 using System.Collections.Specialized;
 
 namespace Zadanie1
@@ -46,6 +42,11 @@ namespace Zadanie1
 
         #region Wykaz
         public void AddWykaz(Wykaz wykaz) => DataContext.wykazy.Add(wykaz);
+
+        public void AddWykaz(string imie, string nazwisko)
+        {
+            DataContext.wykazy.Add(new Wykaz(imie, nazwisko));
+        }
 
         public Wykaz GetWykaz(int id) => DataContext.wykazy[id];
 

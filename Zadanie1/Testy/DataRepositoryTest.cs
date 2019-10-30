@@ -86,6 +86,15 @@ namespace Testy
         }
 
         [TestMethod]
+        public void Test_Add_Wykaz_2()
+        {
+            DataContext dataContest = new DataContext();
+            DataRepository dataRepository = new DataRepository(dataContest);
+            dataRepository.AddWykaz("Pan Tadeusz", "Adam Mickiewicz");
+            Assert.AreEqual(1, dataRepository.DataContext.wykazy.Count);
+        }
+        
+        [TestMethod]
         public void Test_Get_Wykaz()
         {
             DataContext dataContest = new DataContext();

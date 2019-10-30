@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Zadanie1
 {
-    class DataService
+    public class DataService
     {
         private readonly IDataRepository dataRepository;
+       
         public DataService(IDataRepository dataRepository)
         {
             this.dataRepository = dataRepository;
@@ -52,6 +50,10 @@ namespace Zadanie1
         public void AddOpisStanu(Katalog katalog, double cena, int jakosc)
         {
             dataRepository.AddOpisStanu(katalog, cena, jakosc);
+        }
+
+        public void AddWykaz(string imie, string nazwisko) {
+            dataRepository.AddWykaz(imie, nazwisko);
         }
 
     }

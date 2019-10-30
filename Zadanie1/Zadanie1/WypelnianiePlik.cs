@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Zadanie1
 {
-    class WypelnianiePlik : IDataFill
+    public class WypelnianiePlik : IDataFill
     {
         public void Fill(DataContext context)
         {
             string line;
             int count = 0;
 
-            System.IO.StreamReader katalogi = new System.IO.StreamReader(@"dane/katalogi.txt");
+            System.IO.StreamReader katalogi = new System.IO.StreamReader(@"Data/katalogi.txt");
             while ((line = katalogi.ReadLine()) != null)
             {
                 string[] data = line.Split(';');
@@ -22,7 +18,7 @@ namespace Zadanie1
             }
             katalogi.Close();
 
-            System.IO.StreamReader opisyStanu = new System.IO.StreamReader(@"dane/opisyStanu.txt");
+            System.IO.StreamReader opisyStanu = new System.IO.StreamReader(@"Data/opisyStanu.txt");
             while ((line = opisyStanu.ReadLine()) != null)
             {
                 string[] data = line.Split(';');
@@ -30,7 +26,7 @@ namespace Zadanie1
             }
             opisyStanu.Close();
 
-            System.IO.StreamReader wykazy = new System.IO.StreamReader(@"dane/wykazy.txt");
+            System.IO.StreamReader wykazy = new System.IO.StreamReader(@"Data/wykazy.txt");
             while ((line = wykazy.ReadLine()) != null)
             {
                 string[] data = line.Split(';');
@@ -38,7 +34,7 @@ namespace Zadanie1
             }
             wykazy.Close();
 
-            System.IO.StreamReader zdarzeniaDodania = new System.IO.StreamReader(@"dane/zdarzeniaDodania.txt");
+            System.IO.StreamReader zdarzeniaDodania = new System.IO.StreamReader(@"Data/zdarzeniaDodania.txt");
             while ((line = zdarzeniaDodania.ReadLine()) != null)
             {
                 string[] data = line.Split(';');
@@ -46,7 +42,7 @@ namespace Zadanie1
             }
             zdarzeniaDodania.Close();
 
-            System.IO.StreamReader zdarzeniaKupna = new System.IO.StreamReader(@"dane/zdarzeniaKupna.txt");
+            System.IO.StreamReader zdarzeniaKupna = new System.IO.StreamReader(@"Data/zdarzeniaKupna.txt");
             while ((line = zdarzeniaKupna.ReadLine()) != null)
             {
                 string[] data = line.Split(';');
