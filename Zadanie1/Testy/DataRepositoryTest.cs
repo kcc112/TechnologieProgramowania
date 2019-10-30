@@ -21,6 +21,15 @@ namespace Testy
         }
 
         [TestMethod]
+        public void Test_Add_Katalog_2()
+        {
+            DataContext dataContest = new DataContext();
+            DataRepository dataRepository = new DataRepository(dataContest);
+            dataRepository.AddKatalog("Pan Tadeusz", "opis", "Adam Mickiewicz", 1);
+            Assert.AreEqual(1, dataRepository.DataContext.katalogi.Count);
+        }
+
+        [TestMethod]
         public void Test_Get_Katalog()
         {
             DataContext dataContest = new DataContext();
@@ -134,6 +143,16 @@ namespace Testy
         }
 
         [TestMethod]
+        public void Test_Add_OpisStanu_2()
+        {
+            DataContext dataContest = new DataContext();
+            DataRepository dataRepository = new DataRepository(dataContest);
+            Katalog katalog = new Katalog("Pan Tadeusz", "opis", "Adam Mickiewicz", 1);
+            dataRepository.AddOpisStanu(katalog, 10, 2);
+            Assert.AreEqual(1, dataRepository.DataContext.opisyStanu.Count);
+        }
+
+        [TestMethod]
         public void Test_Get_OpisStanu()
         {
             DataContext dataContest = new DataContext();
@@ -142,6 +161,18 @@ namespace Testy
             OpisStanu opisStanu = new OpisStanu(katalog, 10, 2);
             dataRepository.AddOpisStanu(opisStanu);
             Assert.AreEqual(opisStanu, dataRepository.GetOpisStanu(0));
+        }
+
+        [TestMethod]
+        public void Find_Opis_Stanu()
+        {
+            DataContext dataContest = new DataContext();
+            DataRepository dataRepository = new DataRepository(dataContest);
+            Katalog katalog = new Katalog("Pan Tadeusz", "opis", "Adam Mickiewicz", 1);
+            OpisStanu opisStanu1 = new OpisStanu(katalog, 10, 2);
+            dataRepository.AddOpisStanu(opisStanu1);
+            OpisStanu opisStanu2 = dataRepository.FindOpisStanu(katalog, 2);
+            Assert.AreEqual(opisStanu2, opisStanu1);
         }
 
         [TestMethod]
@@ -193,6 +224,19 @@ namespace Testy
             DateTime date = new DateTime(2017, 2, 22);
             Zdarzenie zdarzenie = new ZdarzenieDodanie(wykaz, opisStanu, date);
             dataRepository.AddZdarzenie(zdarzenie);
+            Assert.AreEqual(1, dataRepository.DataContext.zdarzenia.Count);
+        }
+
+        [TestMethod]
+        public void Test_Add_Zdarzenie_Kupno()
+        {
+            DataContext dataContest = new DataContext();
+            DataRepository dataRepository = new DataRepository(dataContest);
+            Katalog katalog = new Katalog("Pan Tadeusz", "opis", "Adam Mickiewicz", 1);
+            OpisStanu opisStanu = new OpisStanu(katalog, 10, 2);
+            Wykaz wykaz = new Wykaz("Pan Tadeusz", "Adam Mickiewicz");
+            DateTime date = new DateTime(2017, 2, 22);
+            dataRepository.ZdarzenieKupno(opisStanu, wykaz, date);
             Assert.AreEqual(1, dataRepository.DataContext.zdarzenia.Count);
         }
 

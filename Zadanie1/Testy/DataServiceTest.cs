@@ -99,11 +99,13 @@ namespace Testy
         [TestMethod]
         public void Add_OpisStanu()
         {
+            IDataFill dataFill = new WypelnianieStalymi();
             DataContext dataContest = new DataContext();
-            DataRepository dataRepository = new DataRepository(dataContest);
+            DataRepository dataRepository = new DataRepository(dataFill, dataContest);
+            DataService dataService = new DataService(dataRepository);
             Katalog katalog = new Katalog("Pan Tadeusz", "opis", "Adam Mickiewicz", 1);
-            dataRepository.AddOpisStanu(katalog, 10, 10);
-            Assert.AreEqual(1, dataContest.opisyStanu.Count);
+            dataService.AddOpisStanu(katalog, 10, 10);
+            Assert.AreEqual(11, dataContest.opisyStanu.Count);
         }
     }
 }
