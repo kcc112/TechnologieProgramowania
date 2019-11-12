@@ -11,15 +11,15 @@ namespace Zadanie1.Serializer
     {
         public static void Serialize(DataContext dataContext, string filename)
         {
-            string data = "";
-            ObjectIDGenerator idGenerator = new ObjectIDGenerator();
-            bool firstTime = false;
-            foreach (Wykaz wykaz in dataContext.wykazy)
-            {
-                data += wykaz.Serialize(idGenerator) + "\n";
-            }
+        //    string data = "";
+        //    ObjectIDGenerator idGenerator = new ObjectIDGenerator();
+        //    bool firstTime = false;
+        //    foreach (Wykaz wykaz in dataContext.wykazy)
+        //    {
+        //        data += wykaz.Serialize(idGenerator) + "\n";
+        //    }
 
-            System.IO.File.WriteAllText(filename, data);
+            System.IO.File.WriteAllText(filename, "XD");
         }
 
     }
