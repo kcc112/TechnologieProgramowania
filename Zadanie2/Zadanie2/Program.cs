@@ -20,20 +20,31 @@ namespace Zadanie2
             Wykaz wykaz2 = new Wykaz("Pan Tadeusz2", "Adam Mickiewicz");
             Wykaz wykaz3 = new Wykaz("Pan Tadeusz3", "Adam Mickiewicz");
 
+            Katalog katalog1 = new Katalog("Pan Tadeusz1", "opis", "Adam Mickiewicz", 1);
+            Katalog katalog2 = new Katalog("Pan Tadeusz2", "opis", "Adam Mickiewicz", 2);
+            Katalog katalog3 = new Katalog("Pan Tadeusz3", "opis", "Adam Mickiewicz", 3);
+
             dataRepository.AddWykaz(wykaz1);
             dataRepository.AddWykaz(wykaz2);
             dataRepository.AddWykaz(wykaz3);
 
-            Console.WriteLine(dataContextToSerialize.wykazy.Count);
+            dataRepository.AddKatalog(katalog1, 1);
+            dataRepository.AddKatalog(katalog2, 2);
+            dataRepository.AddKatalog(katalog3, 3);
+
 
             OwnSerializer.Serialize(dataContextToSerialize, "test.txt");
             OwnSerializer.Deserialize(dataContextDeserialized, "test.txt");
 
-            Console.WriteLine(dataContextDeserialized.wykazy.Count);
 
             Console.WriteLine(dataContextDeserialized.wykazy[0].Imie);
             Console.WriteLine(dataContextDeserialized.wykazy[1].Imie);
             Console.WriteLine(dataContextDeserialized.wykazy[2].Imie);
+
+
+            Console.WriteLine(dataContextDeserialized.katalogi[1].Tytul);
+            Console.WriteLine(dataContextDeserialized.katalogi[2].Tytul);
+            Console.WriteLine(dataContextDeserialized.katalogi[3].Tytul);
 
         }
     }

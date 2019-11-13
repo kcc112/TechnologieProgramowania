@@ -19,6 +19,11 @@ namespace Zadanie1.Serializer
                 data += wykaz.Serialize(idGenerator) + "\n";
             }
 
+            foreach (Katalog katalog in dataContext.katalogi.Values)
+            {
+                data += katalog.Serialize(idGenerator) + "\n";
+            }
+
             System.IO.File.WriteAllText(filename, data);
         }
 
@@ -27,14 +32,14 @@ namespace Zadanie1.Serializer
             string data = System.IO.File.ReadAllText(filename);
             List<string> dataList = data.Split('\n').ToList();
 
-            for(int i = 0; i < dataList.Count; i++)
+            for (int i = 0; i < dataList.Count; i++)
             {
                 List<string> entity = dataList[i].Split(',').ToList();
                 Type type = Type.GetType(entity[0]);
 
-                if(type != null)
+                if (type != null)
                 {
-                    Console.WriteLine(type.ToString());
+
                     object obj = Activator.CreateInstance(type);
 
                     switch (type.ToString())
@@ -43,6 +48,12 @@ namespace Zadanie1.Serializer
                             Wykaz wykaz = (Wykaz)obj;
                             wykaz.Deserialize(entity);
                             dataContext.wykazy.Add(wykaz);
+                            break;
+
+                        case "Zadanie1.Katalog":
+                            Katalog katalog = (Katalog)obj;
+                            katalog.Deserialize(entity);
+                            dataContext.katalogi.Add(katalog.Id, katalog);
                             break;
                     }
 
