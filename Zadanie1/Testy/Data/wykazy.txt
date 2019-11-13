@@ -1,0 +1,8 @@
+﻿Jan;Kowalski
+Andrzej;Wojtkiewicz
+Dawid;Papis
+Maciej;Pastuszak
+Mateusz;Polowczyk
+Kamil;Kijek
+Piotr;Sulkowski
+Bartosz;Bilinski
