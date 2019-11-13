@@ -24,6 +24,10 @@ namespace Zadanie2
             Katalog katalog2 = new Katalog("Pan Tadeusz2", "opis", "Adam Mickiewicz", 2);
             Katalog katalog3 = new Katalog("Pan Tadeusz3", "opis", "Adam Mickiewicz", 3);
 
+            OpisStanu opisStanu1 = new OpisStanu(katalog1, 1.0, 1);
+            OpisStanu opisStanu2 = new OpisStanu(katalog2, 2.0, 2);
+            OpisStanu opisStanu3 = new OpisStanu(katalog3, 3.0, 3);
+
             dataRepository.AddWykaz(wykaz1);
             dataRepository.AddWykaz(wykaz2);
             dataRepository.AddWykaz(wykaz3);
@@ -31,6 +35,10 @@ namespace Zadanie2
             dataRepository.AddKatalog(katalog1, 1);
             dataRepository.AddKatalog(katalog2, 2);
             dataRepository.AddKatalog(katalog3, 3);
+
+            dataRepository.AddOpisStanu(opisStanu1);
+            dataRepository.AddOpisStanu(opisStanu2);
+            dataRepository.AddOpisStanu(opisStanu3);
 
 
             OwnSerializer.Serialize(dataContextToSerialize, "test.txt");
@@ -45,6 +53,10 @@ namespace Zadanie2
             Console.WriteLine(dataContextDeserialized.katalogi[1].Tytul);
             Console.WriteLine(dataContextDeserialized.katalogi[2].Tytul);
             Console.WriteLine(dataContextDeserialized.katalogi[3].Tytul);
+
+            Console.WriteLine(dataContextDeserialized.opisyStanu[0].Cena);
+            Console.WriteLine(dataContextDeserialized.opisyStanu[1].Cena);
+            Console.WriteLine(dataContextDeserialized.opisyStanu[2].Cena);
 
         }
     }

@@ -24,6 +24,11 @@ namespace Zadanie1.Serializer
                 data += katalog.Serialize(idGenerator) + "\n";
             }
 
+            foreach (OpisStanu opisStanu in dataContext.opisyStanu)
+            {
+                data += opisStanu.Serialize(idGenerator) + "\n";
+            }
+
             System.IO.File.WriteAllText(filename, data);
         }
 
@@ -31,6 +36,7 @@ namespace Zadanie1.Serializer
         {
             string data = System.IO.File.ReadAllText(filename);
             List<string> dataList = data.Split('\n').ToList();
+            Dictionary<string, Katalog> helperKatalog = new Dictionary<string, Katalog>();
 
             for (int i = 0; i < dataList.Count; i++)
             {
@@ -54,6 +60,13 @@ namespace Zadanie1.Serializer
                             Katalog katalog = (Katalog)obj;
                             katalog.Deserialize(entity);
                             dataContext.katalogi.Add(katalog.Id, katalog);
+                            helperKatalog.Add(entity[5], katalog);
+                            break;
+
+                        case "Zadanie1.OpisStanu":
+                            OpisStanu opisStanu = (OpisStanu)obj;
+                            opisStanu.Deserialize(entity, helperKatalog);
+                            dataContext.opisyStanu.Add(opisStanu);
                             break;
                     }
 
