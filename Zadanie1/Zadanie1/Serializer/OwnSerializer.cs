@@ -29,6 +29,11 @@ namespace Zadanie1.Serializer
                 data += opisStanu.Serialize(idGenerator) + "\n";
             }
 
+            foreach (Zdarzenie zdarzenie in dataContext.zdarzenia)
+            {
+                data += zdarzenie.Serialize(idGenerator) + "\n";
+            }
+
             System.IO.File.WriteAllText(filename, data);
         }
 
@@ -37,6 +42,8 @@ namespace Zadanie1.Serializer
             string data = System.IO.File.ReadAllText(filename);
             List<string> dataList = data.Split('\n').ToList();
             Dictionary<string, Katalog> helperKatalog = new Dictionary<string, Katalog>();
+            Dictionary<string, Wykaz> helperWykaz = new Dictionary<string, Wykaz>();
+            Dictionary<string, OpisStanu> helperOpisStanu = new Dictionary<string, OpisStanu>();
 
             for (int i = 0; i < dataList.Count; i++)
             {
@@ -48,12 +55,14 @@ namespace Zadanie1.Serializer
 
                     object obj = Activator.CreateInstance(type);
 
+
                     switch (type.ToString())
                     {
                         case "Zadanie1.Wykaz":
                             Wykaz wykaz = (Wykaz)obj;
                             wykaz.Deserialize(entity);
                             dataContext.wykazy.Add(wykaz);
+                            helperWykaz.Add(entity[3], wykaz);
                             break;
 
                         case "Zadanie1.Katalog":
@@ -67,7 +76,21 @@ namespace Zadanie1.Serializer
                             OpisStanu opisStanu = (OpisStanu)obj;
                             opisStanu.Deserialize(entity, helperKatalog);
                             dataContext.opisyStanu.Add(opisStanu);
+                            helperOpisStanu.Add(entity[4], opisStanu);
                             break;
+
+                        case "Zadanie1.ZdarzenieDodanie":
+                            Zdarzenie zdarzenieDodanie = (ZdarzenieDodanie)obj;
+                            zdarzenieDodanie.Deserialize(entity, helperOpisStanu, helperWykaz);
+                            dataContext.zdarzenia.Add(zdarzenieDodanie);
+                            break;
+
+                        case "Zadanie1.ZdarzenieKupno":
+                            Zdarzenie zdarzenieKupno = (ZdarzenieKupno)obj;
+                            zdarzenieKupno.Deserialize(entity, helperOpisStanu, helperWykaz);
+                            dataContext.zdarzenia.Add(zdarzenieKupno);
+                            break;
+
                     }
 
 

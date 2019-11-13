@@ -28,6 +28,12 @@ namespace Zadanie2
             OpisStanu opisStanu2 = new OpisStanu(katalog2, 2.0, 2);
             OpisStanu opisStanu3 = new OpisStanu(katalog3, 3.0, 3);
 
+
+            Zdarzenie zdarzenie1 = new ZdarzenieDodanie(wykaz1, opisStanu1, new DateTime(2017, 2, 22));
+            Zdarzenie zdarzenie2 = new ZdarzenieKupno(wykaz2, opisStanu2, new DateTime(2017, 2, 22));
+            Zdarzenie zdarzenie3 = new ZdarzenieDodanie(wykaz3, opisStanu3, new DateTime(2017, 2, 22));
+
+
             dataRepository.AddWykaz(wykaz1);
             dataRepository.AddWykaz(wykaz2);
             dataRepository.AddWykaz(wykaz3);
@@ -39,6 +45,10 @@ namespace Zadanie2
             dataRepository.AddOpisStanu(opisStanu1);
             dataRepository.AddOpisStanu(opisStanu2);
             dataRepository.AddOpisStanu(opisStanu3);
+
+            dataRepository.AddZdarzenie(zdarzenie1);
+            dataRepository.AddZdarzenie(zdarzenie2);
+            dataRepository.AddZdarzenie(zdarzenie3);
 
 
             OwnSerializer.Serialize(dataContextToSerialize, "test.txt");
@@ -57,6 +67,10 @@ namespace Zadanie2
             Console.WriteLine(dataContextDeserialized.opisyStanu[0].Cena);
             Console.WriteLine(dataContextDeserialized.opisyStanu[1].Cena);
             Console.WriteLine(dataContextDeserialized.opisyStanu[2].Cena);
+
+            Console.WriteLine(dataContextDeserialized.zdarzenia[0].Wykaz.Imie);
+            Console.WriteLine(dataContextDeserialized.zdarzenia[1].Wykaz.Imie);
+            Console.WriteLine(dataContextDeserialized.zdarzenia[2].Wykaz.Imie);
 
         }
     }

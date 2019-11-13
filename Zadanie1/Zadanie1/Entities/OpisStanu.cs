@@ -28,10 +28,10 @@ namespace Zadanie1
         {
             string data = "";
             data += GetType().FullName + ",";
-            data += idGenerator.GetId(Katalog, out bool firstTine) + ",";
+            data += idGenerator.GetId(Katalog, out bool firstTime) + ",";
             data += Cena + ",";
             data += Jakosc + ",";
-            data += idGenerator.GetId(this, out bool firstTime) + ",";
+            data += idGenerator.GetId(this, out firstTime) + ",";
             return data;
         }
 
