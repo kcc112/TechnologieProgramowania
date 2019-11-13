@@ -11,15 +11,44 @@ namespace Zadanie1.Serializer
     {
         public static void Serialize(DataContext dataContext, string filename)
         {
-        //    string data = "";
-        //    ObjectIDGenerator idGenerator = new ObjectIDGenerator();
-        //    bool firstTime = false;
-        //    foreach (Wykaz wykaz in dataContext.wykazy)
-        //    {
-        //        data += wykaz.Serialize(idGenerator) + "\n";
-        //    }
+            string data = "";
+            ObjectIDGenerator idGenerator = new ObjectIDGenerator();
 
-            System.IO.File.WriteAllText(filename, "XD");
+            foreach (Wykaz wykaz in dataContext.wykazy)
+            {
+                data += wykaz.Serialize(idGenerator) + "\n";
+            }
+
+            System.IO.File.WriteAllText(filename, data);
+        }
+
+        public static void Deserialize(DataContext dataContext, string filename)
+        {
+            string data = System.IO.File.ReadAllText(filename);
+            List<string> dataList = data.Split('\n').ToList();
+
+            for(int i = 0; i < dataList.Count; i++)
+            {
+                List<string> entity = dataList[i].Split(',').ToList();
+                Type type = Type.GetType(entity[0]);
+
+                if(type != null)
+                {
+                    Console.WriteLine(type.ToString());
+                    object obj = Activator.CreateInstance(type);
+
+                    switch (type.ToString())
+                    {
+                        case "Zadanie1.Wykaz":
+                            Wykaz wykaz = (Wykaz)obj;
+                            wykaz.Deserialize(entity);
+                            dataContext.wykazy.Add(wykaz);
+                            break;
+                    }
+
+
+                }
+            }
         }
 
     }

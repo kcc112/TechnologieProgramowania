@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Zadanie1
@@ -13,6 +14,8 @@ namespace Zadanie1
             Nazwisko = nazwisko;
         }
 
+        public Wykaz() {}
+
         public override string ToString()
         {
             return $"Imie: { Imie } | Nazwisko: { Nazwisko }";
@@ -21,11 +24,17 @@ namespace Zadanie1
         public virtual string Serialize(ObjectIDGenerator idGenerator)
         {
             string data = "";
-            data += this.GetType().FullName + ",";
+            data += GetType().FullName + ",";
+            data += Imie + ",";
+            data += Nazwisko + ",";
             data += idGenerator.GetId(this, out bool firstTime) + ",";
-            data += this.Imie + ",";
-            data += this.Nazwisko + ",";
             return data;
+        }
+
+        public virtual void Deserialize(List<string> data)
+        {
+           Imie = data[1];
+           Nazwisko = data[2];
         }
     }
 }
