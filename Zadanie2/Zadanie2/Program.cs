@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,11 @@ namespace Zadanie2
             dataRepository.AddZdarzenie(zdarzenie1);
             dataRepository.AddZdarzenie(zdarzenie2);
             dataRepository.AddZdarzenie(zdarzenie3);
+
+            //Stream stream = new FileStream("text.txt", FileMode.Create);  
+            //OwnFormatter ownFormatter = new OwnFormatter();
+            //ownFormatter.Serialize(stream, dataContextToSerialize.wykazy);
+            //stream.Close();
 
 
             OwnSerializer.Serialize(dataContextToSerialize, "test.txt");

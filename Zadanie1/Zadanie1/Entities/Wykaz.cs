@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -35,6 +36,19 @@ namespace Zadanie1
         {
            Imie = data[1];
            Nazwisko = data[2];
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Type", GetType().FullName);
+            info.AddValue("Imie", Imie);
+            info.AddValue("Nazwisko", Nazwisko);
+        }
+
+        public Wykaz(SerializationInfo info, StreamingContext context)
+        {
+            Imie = info.GetString("Imie");
+            Nazwisko = info.GetString("Nazwisko");
         }
     }
 }
