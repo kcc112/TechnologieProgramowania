@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+
 namespace Zadanie1
 {
     public class Katalog
@@ -15,9 +19,31 @@ namespace Zadanie1
             Id = id;
         }
 
+        public Katalog() { }
+
         public override string ToString()
         {
             return $"Tytul: { Tytul } | Autor: { Autor } | Opis: { Opis } | Id: { Id }";
+        }
+
+        public virtual string Serialize(ObjectIDGenerator idGenerator)
+        {
+            string data = "";
+            data += GetType().FullName + ",";
+            data += Tytul + ",";
+            data += Autor + ",";
+            data += Opis + ",";
+            data += Id + ",";
+            data += idGenerator.GetId(this, out bool firstTime) + ",";
+            return data;
+        }
+
+        public virtual void Deserialize(List<string> data)
+        {
+            Tytul = data[1];
+            Autor = data[2];
+            Opis = data[3];
+            Id = Int32.Parse(data[4]);
         }
     }
 }
