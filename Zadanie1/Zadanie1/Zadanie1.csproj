@@ -72,6 +72,7 @@
     <Compile Include="DataContext.cs" />
     <Compile Include="Interfaces\IDataFill.cs" />
     <Compile Include="Service\DataService.cs" />
+    <Compile Include="Serializer\OwnSerializer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
