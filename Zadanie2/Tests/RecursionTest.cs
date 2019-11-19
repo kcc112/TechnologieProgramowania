@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using Tests.Recurrent_Model;
 
 namespace Tests
@@ -101,6 +103,53 @@ namespace Tests
             Assert.AreEqual(newContextToDerialize.b[1].ClassC, newContextToDerialize.c[1]);
             Assert.AreEqual(newContextToDerialize.c[1].ClassA, newContextToDerialize.a[1]);
             Assert.AreEqual(newContextToDerialize.c[1].ClassA, newContextToDerialize.a[1]);
+        }
+
+        [TestMethod]
+        public void TestJsonClassName()
+        {
+            NewContext newContextToSerialize = new NewContext();
+            NewContext newContextToDerialize = new NewContext();
+
+            A a = new A();
+            B b = new B();
+            C c = new C();
+
+            a.ClassB = b;
+            b.ClassC = c;
+            c.ClassA = a;
+
+            a.ClassName = "A1";
+            b.ClassName = "B1";
+            c.ClassName = "C1";
+
+            newContextToSerialize.a.Add(a);
+            newContextToSerialize.b.Add(b);
+            newContextToSerialize.c.Add(c);
+
+
+            File.Delete("r_test.json");
+            Stream streamSerialize = File.Open("r_test.json", FileMode.Create, FileAccess.ReadWrite);
+
+            string json = JsonConvert.SerializeObject(newContextToSerialize, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
+            byte[] content = Encoding.ASCII.GetBytes(json);
+            streamSerialize.Write(content, 0, content.Length);
+
+            streamSerialize.Close();
+
+
+
+            Stream streamDeserialize = File.Open("r_test.json", FileMode.Open, FileAccess.ReadWrite);
+            StreamReader reader = new StreamReader(streamDeserialize);
+
+            string fileContent = reader.ReadToEnd();
+            newContextToDerialize = JsonConvert.DeserializeObject<NewContext>(fileContent, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
+
+            streamDeserialize.Close();
+
+            Assert.AreEqual(newContextToSerialize.a[0].ClassName, newContextToDerialize.a[0].ClassName);
+            Assert.AreEqual(newContextToSerialize.b[0].ClassName, newContextToDerialize.b[0].ClassName);
+            Assert.AreEqual(newContextToSerialize.c[0].ClassName, newContextToDerialize.c[0].ClassName);
         }
     }
 }
