@@ -1,8 +1,5 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
 using Tests.Recurrent_Model;
 
 namespace Tests
@@ -130,21 +127,12 @@ namespace Tests
 
             File.Delete("test.json");
             Stream streamSerialize = File.Open("test.json", FileMode.Create, FileAccess.ReadWrite);
-
-            string json = JsonConvert.SerializeObject(newContextToSerialize, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
-            byte[] content = Encoding.ASCII.GetBytes(json);
-            streamSerialize.Write(content, 0, content.Length);
-
+            JsonFormatter.Serialize(newContextToSerialize, streamSerialize);
             streamSerialize.Close();
 
 
-
             Stream streamDeserialize = File.Open("test.json", FileMode.Open, FileAccess.ReadWrite);
-            StreamReader reader = new StreamReader(streamDeserialize);
-
-            string fileContent = reader.ReadToEnd();
-            newContextToDerialize = JsonConvert.DeserializeObject<NewContext>(fileContent, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
-
+            JsonFormatter.Deserialize(ref newContextToDerialize, streamDeserialize);
             streamDeserialize.Close();
 
             Assert.AreEqual(newContextToSerialize.a[0].ClassName, newContextToDerialize.a[0].ClassName);
@@ -194,21 +182,12 @@ namespace Tests
 
             File.Delete("r_test.json");
             Stream streamSerialize = File.Open("r_test.json", FileMode.Create, FileAccess.ReadWrite);
-
-            string json = JsonConvert.SerializeObject(newContextToSerialize, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
-            byte[] content = Encoding.ASCII.GetBytes(json);
-            streamSerialize.Write(content, 0, content.Length);
-
+            JsonFormatter.Serialize(newContextToSerialize, streamSerialize);
             streamSerialize.Close();
 
 
-
             Stream streamDeserialize = File.Open("r_test.json", FileMode.Open, FileAccess.ReadWrite);
-            StreamReader reader = new StreamReader(streamDeserialize);
-
-            string fileContent = reader.ReadToEnd();
-            newContextToDerialize = JsonConvert.DeserializeObject<NewContext>(fileContent, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
-
+            JsonFormatter.Deserialize(ref newContextToDerialize, streamDeserialize);
             streamDeserialize.Close();
 
             Assert.AreEqual(newContextToDerialize.a[0].ClassB, newContextToDerialize.b[0]);
