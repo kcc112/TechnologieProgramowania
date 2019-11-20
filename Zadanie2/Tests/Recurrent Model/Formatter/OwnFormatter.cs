@@ -52,7 +52,7 @@ namespace Tests
 
             for (int i = 0; i < dataList.Count; i++)
             {
-                List<string> entity = dataList[i].Split(',').ToList();
+                List<string> entity = dataList[i].Split('|').ToList();
                 Type type = Type.GetType(entity[0]);
 
                 if (type != null)

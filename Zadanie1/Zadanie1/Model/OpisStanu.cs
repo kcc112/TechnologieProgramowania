@@ -27,11 +27,11 @@ namespace Zadanie1
         public virtual string Serialize(ObjectIDGenerator idGenerator)
         {
             string data = "";
-            data += GetType().FullName + ",";
-            data += idGenerator.GetId(Katalog, out bool firstTime) + ",";
-            data += Cena + ",";
-            data += Jakosc + ",";
-            data += idGenerator.GetId(this, out firstTime) + ",";
+            data += GetType().FullName + "|";
+            data += idGenerator.GetId(Katalog, out bool firstTime) + "|";
+            data += Cena + "|";
+            data += Jakosc + "|";
+            data += idGenerator.GetId(this, out firstTime) + "|";
             return data;
         }
 

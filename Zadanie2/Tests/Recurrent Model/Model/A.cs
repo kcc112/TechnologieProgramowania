@@ -7,28 +7,26 @@ using System.Threading.Tasks;
 
 namespace Tests.Recurrent_Model
 {
-    [Serializable]
-    public class B
+    public class A
     {
-        public C ClassC { get; set; }
+        public B ClassB { get; set; }
         public string ClassName { get; set; }
 
-        public B(C classB, string className)
+        public A(B classB, string className)
         {
-            ClassC = classB;
+            ClassB = classB;
             ClassName = className;
         }
 
-        public B() { }
-
+        public A() { }
 
         public virtual string Serialize(ObjectIDGenerator idGenerator)
         {
             string data = "";
-            data += GetType().FullName + ",";
-            data += ClassName + ",";
-            data += idGenerator.GetId(ClassC, out bool firstTime) + ",";
-            data += idGenerator.GetId(this, out firstTime) + ",";
+            data += GetType().FullName + "|";
+            data += ClassName + "|";
+            data += idGenerator.GetId(ClassB, out bool firstTime) + "|";
+            data += idGenerator.GetId(this, out firstTime) + "|";
             return data;
         }
 

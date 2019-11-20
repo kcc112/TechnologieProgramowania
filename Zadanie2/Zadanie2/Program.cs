@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Zadanie1;
 using Zadanie1.Serializer;
 
@@ -25,9 +21,9 @@ namespace Zadanie2
             Katalog katalog2 = new Katalog("Pan Tadeusz2", "opis", "Adam Mickiewicz", 2);
             Katalog katalog3 = new Katalog("Pan Tadeusz3", "opis", "Adam Mickiewicz", 3);
 
-            OpisStanu opisStanu1 = new OpisStanu(katalog1, 1.0, 1);
-            OpisStanu opisStanu2 = new OpisStanu(katalog2, 2.0, 2);
-            OpisStanu opisStanu3 = new OpisStanu(katalog3, 3.0, 3);
+            OpisStanu opisStanu1 = new OpisStanu(katalog1, 1.1, 1);
+            OpisStanu opisStanu2 = new OpisStanu(katalog2, 2.2, 2);
+            OpisStanu opisStanu3 = new OpisStanu(katalog3, 3.3, 3);
 
 
             Zdarzenie zdarzenie1 = new ZdarzenieDodanie(wykaz1, opisStanu1, new DateTime(2017, 2, 22));
@@ -51,14 +47,14 @@ namespace Zadanie2
             dataRepository.AddZdarzenie(zdarzenie2);
             dataRepository.AddZdarzenie(zdarzenie3);
 
-            //Stream stream = new FileStream("text.txt", FileMode.Create);  
-            //OwnFormatter ownFormatter = new OwnFormatter();
-            //ownFormatter.Serialize(stream, dataContextToSerialize.wykazy);
-            //stream.Close();
+            File.Delete("own_format.txt");
+            Stream stream = File.Open("own_format.txt", FileMode.Create, FileAccess.ReadWrite);
+            OwnFormatterBase.Serialize(dataContextToSerialize, stream);
+            stream.Close();
 
-
-            OwnSerializer.Serialize(dataContextToSerialize, "test.txt");
-            OwnSerializer.Deserialize(dataContextDeserialized, "test.txt");
+            Stream streamDeserialize = File.Open("own_format.txt", FileMode.Open, FileAccess.Read);
+            OwnFormatterBase.Deserialize(dataContextDeserialized, streamDeserialize);
+            streamDeserialize.Close();
 
 
             Console.WriteLine(dataContextDeserialized.wykazy[0].Imie);

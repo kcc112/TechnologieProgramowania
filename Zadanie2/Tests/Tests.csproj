@@ -52,11 +52,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Recurrent Model\OwnFormatter.cs" />
-    <Compile Include="Recurrent Model\A.cs" />
-    <Compile Include="Recurrent Model\B.cs" />
-    <Compile Include="Recurrent Model\C.cs" />
-    <Compile Include="Recurrent Model\NewContext.cs" />
+    <Compile Include="Recurrent Model\Formatter\OwnFormatter.cs" />
+    <Compile Include="Recurrent Model\Model\A.cs" />
+    <Compile Include="Recurrent Model\Model\B.cs" />
+    <Compile Include="Recurrent Model\Model\C.cs" />
+    <Compile Include="Recurrent Model\DataContext\NewContext.cs" />
     <Compile Include="RecursionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
