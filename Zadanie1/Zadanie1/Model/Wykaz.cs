@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -22,7 +21,7 @@ namespace Zadanie1
             return $"Imie: { Imie } | Nazwisko: { Nazwisko }";
         }
 
-        public virtual string Serialize(ObjectIDGenerator idGenerator)
+        public string Serialize(ObjectIDGenerator idGenerator)
         {
             string data = "";
             data += GetType().FullName + "|";
@@ -32,7 +31,7 @@ namespace Zadanie1
             return data;
         }
 
-        public virtual void Deserialize(List<string> data)
+        public void Deserialize(List<string> data)
         {
            Imie = data[1];
            Nazwisko = data[2];
