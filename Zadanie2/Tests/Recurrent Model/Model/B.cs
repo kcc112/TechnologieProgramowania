@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tests.Recurrent_Model
 {
@@ -21,7 +17,7 @@ namespace Tests.Recurrent_Model
         public B() { }
 
 
-        public virtual string Serialize(ObjectIDGenerator idGenerator)
+        public string Serialize(ObjectIDGenerator idGenerator)
         {
             string data = "";
             data += GetType().FullName + "|";
@@ -31,7 +27,7 @@ namespace Tests.Recurrent_Model
             return data;
         }
 
-        public virtual void Deserialize(List<string> data)
+        public void Deserialize(List<string> data)
         {
             ClassName = data[1];
         }

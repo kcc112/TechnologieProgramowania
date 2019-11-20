@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -24,7 +23,7 @@ namespace Zadanie1
             return $"Cena: { Cena } | Jakosc: { Jakosc } | " + Katalog.ToString();
         }
 
-        public virtual string Serialize(ObjectIDGenerator idGenerator)
+        public string Serialize(ObjectIDGenerator idGenerator)
         {
             string data = "";
             data += GetType().FullName + "|";
@@ -35,7 +34,7 @@ namespace Zadanie1
             return data;
         }
 
-        public virtual void Deserialize(List<string> data, Dictionary<string, Katalog> helperKatalog)
+        public void Deserialize(List<string> data, Dictionary<string, Katalog> helperKatalog)
         {
             Katalog = helperKatalog[data[1]];
             Cena = double.Parse(data[2]);

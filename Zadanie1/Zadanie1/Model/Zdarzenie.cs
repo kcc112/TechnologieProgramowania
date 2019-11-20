@@ -24,7 +24,7 @@ namespace Zadanie1
             return $"Data: { Data } | " + Wykaz.ToString() + OpisStanu.ToString();
         }
 
-        public virtual string Serialize(ObjectIDGenerator idGenerator)
+        public string Serialize(ObjectIDGenerator idGenerator)
         {
             string data = "";
             data += GetType().FullName + "|";
@@ -35,7 +35,7 @@ namespace Zadanie1
             return data;
         }
 
-        public virtual void Deserialize(List<string> data, Dictionary<string, OpisStanu> helperOpisStanu, Dictionary<string, Wykaz> helperWykaz)
+        public void Deserialize(List<string> data, Dictionary<string, OpisStanu> helperOpisStanu, Dictionary<string, Wykaz> helperWykaz)
         {
             Wykaz = helperWykaz[data[1]];
             OpisStanu = helperOpisStanu[data[2]];

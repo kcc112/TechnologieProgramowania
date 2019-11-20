@@ -26,7 +26,7 @@ namespace Zadanie1
             return $"Tytul: { Tytul } | Autor: { Autor } | Opis: { Opis } | Id: { Id }";
         }
 
-        public virtual string Serialize(ObjectIDGenerator idGenerator)
+        public string Serialize(ObjectIDGenerator idGenerator)
         {
             string data = "";
             data += GetType().FullName + "|";
@@ -38,7 +38,7 @@ namespace Zadanie1
             return data;
         }
 
-        public virtual void Deserialize(List<string> data)
+        public void Deserialize(List<string> data)
         {
             Tytul = data[1];
             Autor = data[2];
