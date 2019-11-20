@@ -52,6 +52,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Recurrent Model\Formatter\JsonFormatter.cs" />
     <Compile Include="Recurrent Model\Formatter\OwnFormatter.cs" />
     <Compile Include="Recurrent Model\Model\A.cs" />
     <Compile Include="Recurrent Model\Model\B.cs" />
