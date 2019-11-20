@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fill\WypelnianieStalymi.cs" />
+    <Compile Include="OwnModelTest.cs" />
     <Compile Include="Recurrent Model\Formatter\JsonFormatter.cs" />
     <Compile Include="Recurrent Model\Formatter\OwnFormatter.cs" />
     <Compile Include="Recurrent Model\Model\A.cs" />
