@@ -16,10 +16,11 @@ namespace Zadanie1.Serializer
 
         public static void Deserialize(ref DataContext dataContext, Stream stream)
         {
+            JsonConverter[] converters = { new DataContextConverter() };
             StreamReader reader = new StreamReader(stream);
 
             string fileContent = reader.ReadToEnd();
-            dataContext = JsonConvert.DeserializeObject<DataContext>(fileContent);
+            dataContext = JsonConvert.DeserializeObject<DataContext>(fileContent, new JsonSerializerSettings() { Converters = converters });
         }
     }
 }

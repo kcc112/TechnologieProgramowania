@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContextConverter.cs" />
     <Compile Include="Interfaces\IDataRepository.cs" />
     <Compile Include="Model\Wykaz.cs" />
     <Compile Include="Dao\DataRepository.cs" />
