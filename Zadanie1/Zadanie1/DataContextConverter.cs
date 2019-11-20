@@ -14,7 +14,7 @@ namespace Zadanie1
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JObject jo = JObject.Load(reader);
-            return jo.ToObject<Zdarzenie>(serializer);
+            return jo.ToObject<ZdarzenieDodanie>(serializer);
         }
 
         public override bool CanWrite
