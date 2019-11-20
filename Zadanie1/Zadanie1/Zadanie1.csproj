@@ -63,7 +63,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContextConverter.cs" />
     <Compile Include="Interfaces\IDataRepository.cs" />
     <Compile Include="Model\Wykaz.cs" />
     <Compile Include="Dao\DataRepository.cs" />
@@ -76,8 +75,8 @@
     <Compile Include="DataContext.cs" />
     <Compile Include="Interfaces\IDataFill.cs" />
     <Compile Include="Serializer\JsonFormatterBase.cs" />
-    <Compile Include="Service\DataService.cs" />
     <Compile Include="Serializer\OwnFormatterBase.cs" />
+    <Compile Include="Service\DataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

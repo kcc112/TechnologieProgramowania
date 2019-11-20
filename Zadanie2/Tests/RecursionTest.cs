@@ -1,8 +1,5 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
 using Tests.Recurrent_Model;
 
 namespace Tests
