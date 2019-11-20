@@ -10,7 +10,7 @@ namespace Zadanie1.Serializer
         {
             string json = JsonConvert.SerializeObject(dataContext, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
 
-            byte[] content = Encoding.ASCII.GetBytes(json);
+            byte[] content = Encoding.UTF8.GetBytes(json);
             stream.Write(content, 0, content.Length);
         }
 

@@ -10,7 +10,7 @@ namespace Tests.Recurrent_Model
         {
             string json = JsonConvert.SerializeObject(newContext, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
 
-            byte[] content = Encoding.ASCII.GetBytes(json);
+            byte[] content = Encoding.UTF8.GetBytes(json);
             stream.Write(content, 0, content.Length);
         }
 
