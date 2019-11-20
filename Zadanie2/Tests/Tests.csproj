@@ -52,6 +52,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fill\WypelnianieStalymi.cs" />
     <Compile Include="Recurrent Model\Formatter\JsonFormatter.cs" />
     <Compile Include="Recurrent Model\Formatter\OwnFormatter.cs" />
     <Compile Include="Recurrent Model\Model\A.cs" />
@@ -63,6 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Zadanie1\Zadanie1\Zadanie1.csproj">
+      <Project>{B38E9A97-ACBC-4DA5-AFFF-C49D65D7BDF4}</Project>
+      <Name>Zadanie1</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
