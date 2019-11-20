@@ -30,7 +30,7 @@ namespace Tests
                 fileContent += c.Serialize(idGenerator) + "\n";
             }
 
-            byte[] content = Encoding.ASCII.GetBytes(fileContent);
+            byte[] content = Encoding.UTF8.GetBytes(fileContent);
 
             stream.Write(content, 0, content.Length);
         }

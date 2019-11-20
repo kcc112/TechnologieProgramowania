@@ -11,10 +11,5 @@ namespace Zadanie1
         public Dictionary<int, Katalog> katalogi = new Dictionary<int, Katalog>();
         public ObservableCollection<Zdarzenie> zdarzenia = new ObservableCollection<Zdarzenie>();
         public List<OpisStanu> opisyStanu = new List<OpisStanu>();
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("wykazy", wykazy, wykazy.GetType());
-        }
     }
 }
