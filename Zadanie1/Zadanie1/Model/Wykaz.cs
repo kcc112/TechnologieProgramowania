@@ -25,10 +25,10 @@ namespace Zadanie1
         public virtual string Serialize(ObjectIDGenerator idGenerator)
         {
             string data = "";
-            data += GetType().FullName + ",";
-            data += Imie + ",";
-            data += Nazwisko + ",";
-            data += idGenerator.GetId(this, out bool firstTime) + ",";
+            data += GetType().FullName + "|";
+            data += Imie + "|";
+            data += Nazwisko + "|";
+            data += idGenerator.GetId(this, out bool firstTime) + "|";
             return data;
         }
 
@@ -36,19 +36,6 @@ namespace Zadanie1
         {
            Imie = data[1];
            Nazwisko = data[2];
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("Type", GetType().FullName);
-            info.AddValue("Imie", Imie);
-            info.AddValue("Nazwisko", Nazwisko);
-        }
-
-        public Wykaz(SerializationInfo info, StreamingContext context)
-        {
-            Imie = info.GetString("Imie");
-            Nazwisko = info.GetString("Nazwisko");
         }
     }
 }
