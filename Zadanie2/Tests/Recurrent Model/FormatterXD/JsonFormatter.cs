@@ -19,7 +19,7 @@ namespace Tests.Recurrent_Model
             StreamReader reader = new StreamReader(stream);
 
             string fileContent = reader.ReadToEnd();
-            newContext = JsonConvert.DeserializeObject<NewContext>(fileContent);
+            newContext = JsonConvert.DeserializeObject<NewContext>(fileContent, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
         }
     }
 }

@@ -55,8 +55,8 @@
   <ItemGroup>
     <Compile Include="Fill\WypelnianieStalymi.cs" />
     <Compile Include="OwnModelTest.cs" />
-    <Compile Include="Recurrent Model\Formatter\JsonFormatter.cs" />
-    <Compile Include="Recurrent Model\Formatter\OwnFormatter.cs" />
+    <Compile Include="Recurrent Model\FormatterXD\JsonFormatter.cs" />
+    <Compile Include="Recurrent Model\FormatterXD\OwnFormatter.cs" />
     <Compile Include="Recurrent Model\Model\A.cs" />
     <Compile Include="Recurrent Model\Model\B.cs" />
     <Compile Include="Recurrent Model\Model\C.cs" />
@@ -71,6 +71,10 @@
     <ProjectReference Include="..\..\Zadanie1\Zadanie1\Zadanie1.csproj">
       <Project>{B38E9A97-ACBC-4DA5-AFFF-C49D65D7BDF4}</Project>
       <Name>Zadanie1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zadanie2\Zadanie2.csproj">
+      <Project>{bb8dcfeb-1a4e-4a4b-bca6-a6890f90399c}</Project>
+      <Name>Zadanie2</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

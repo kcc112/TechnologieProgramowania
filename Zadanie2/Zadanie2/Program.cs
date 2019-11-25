@@ -73,7 +73,6 @@ namespace Zadanie2
             Console.WriteLine(dataContextDeserialized.zdarzenia[0].Wykaz.Imie);
             Console.WriteLine(dataContextDeserialized.zdarzenia[1].Wykaz.Imie);
             Console.WriteLine(dataContextDeserialized.zdarzenia[2].Wykaz.Imie);
-
         }
     }
 }
