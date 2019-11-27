@@ -20,21 +20,5 @@ namespace Zadanie1
         {
             return $"Imie: { Imie } | Nazwisko: { Nazwisko }";
         }
-
-        public string Serialize(ObjectIDGenerator idGenerator)
-        {
-            string data = "";
-            data += GetType().FullName + "|";
-            data += Imie + "|";
-            data += Nazwisko + "|";
-            data += idGenerator.GetId(this, out bool firstTime) + "|";
-            return data;
-        }
-
-        public void Deserialize(List<string> data)
-        {
-           Imie = data[1];
-           Nazwisko = data[2];
-        }
     }
 }

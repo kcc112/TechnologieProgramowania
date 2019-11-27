@@ -54,13 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fill\WypelnianieStalymi.cs" />
-    <Compile Include="OwnModelTest.cs" />
-    <Compile Include="Recurrent Model\FormatterXD\JsonFormatter.cs" />
-    <Compile Include="Recurrent Model\FormatterXD\OwnFormatter.cs" />
     <Compile Include="Recurrent Model\Model\A.cs" />
     <Compile Include="Recurrent Model\Model\B.cs" />
     <Compile Include="Recurrent Model\Model\C.cs" />
-    <Compile Include="Recurrent Model\DataContext\NewContext.cs" />
     <Compile Include="RecursionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

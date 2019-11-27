@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Tests.Recurrent_Model
 {
     [Serializable]
+    [JsonObject]
     public class B : ISerializable
     {
         public C ClassC { get; set; }
@@ -17,22 +19,6 @@ namespace Tests.Recurrent_Model
         }
 
         public B() { }
-
-
-        public string Serialize(ObjectIDGenerator idGenerator)
-        {
-            string data = "";
-            data += GetType().FullName + "|";
-            data += ClassName + "|";
-            data += idGenerator.GetId(ClassC, out bool firstTime) + "|";
-            data += idGenerator.GetId(this, out firstTime) + "|";
-            return data;
-        }
-
-        public void Deserialize(List<string> data)
-        {
-            ClassName = data[1];
-        }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
