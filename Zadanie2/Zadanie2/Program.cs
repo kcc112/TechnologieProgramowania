@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Zadanie1;
 
 namespace Zadanie2
 {

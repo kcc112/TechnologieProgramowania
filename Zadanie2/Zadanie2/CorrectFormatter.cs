@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Reflection;
+using System.Globalization;
 
 namespace Zadanie2
 {
@@ -23,6 +24,8 @@ namespace Zadanie2
         public override object Deserialize(Stream serializationStream)
         {
             List<object> deserializedObjects = new List<object>();
+            List<Type> types = new List<Type>();
+
             StreamReader reader = new StreamReader(serializationStream);
             string fileContent = reader.ReadToEnd();
             List<string> dataList = fileContent.Split('\n').ToList();
@@ -38,52 +41,105 @@ namespace Zadanie2
                 }
                 info.AddValue(entity[entity.Count - 2], null);
                 deserializedObjects.Add(Activator.CreateInstance(Type.GetType(entity[3] + ", " + entity[3].Split('.').ToList()[0]), info, context));
+                types.Add(deserializedObjects[i].GetType());
+
             }
 
+            for (int i = 0; i < deserializedObjects.Count - 1; i++)
+            {
+                foreach (PropertyInfo propertyInfo in deserializedObjects[i].GetType().GetProperties())
+                {
+                    if (propertyInfo.PropertyType == deserializedObjects[i + 1].GetType())
+                    {
+                        propertyInfo.SetValue(deserializedObjects[i], deserializedObjects[i + 1]);
+                    }
+                }
+            }
 
-            Type type1 = deserializedObjects[2].GetType();
-            Type type2 = deserializedObjects[1].GetType();
-            Type type3 = deserializedObjects[0].GetType();
+           
+            foreach (PropertyInfo propertyInfo in deserializedObjects[deserializedObjects.Count - 1].GetType().GetProperties())
+            {
+                if (propertyInfo.PropertyType == deserializedObjects[0].GetType())
+                {
+                    propertyInfo.SetValue(deserializedObjects[deserializedObjects.Count - 1], deserializedObjects[0]);
+                }
+            }
 
-            PropertyInfo prop1 = type1.GetProperty("ClassA");
-            PropertyInfo prop2 = type2.GetProperty("ClassB");
-            PropertyInfo prop3 = type3.GetProperty("ClassC");
-
-            prop1.SetValue(deserializedObjects[2], deserializedObjects[1], null);
-            prop2.SetValue(deserializedObjects[1], deserializedObjects[0], null);
-            prop3.SetValue(deserializedObjects[0], deserializedObjects[2], null);
-
-            return deserializedObjects[2];
+            return deserializedObjects[0];
         }
+
+        private string FileContent = "";
+        bool FirtsTime;
 
         public override void Serialize(Stream serializationStream, object graph)
         {
-            ISerializable data = (ISerializable)graph;
-            string fileContent = "";
-            SerializationInfo info = new SerializationInfo(graph.GetType(), new FormatterConverter());
-            info.AddValue("id", IdGenerator.GetId(graph, out bool firtsTime));
-            info.AddValue("ClassType", graph.GetType().FullName);
-            StreamingContext context = new StreamingContext(StreamingContextStates.File);
-            data.GetObjectData(info, context);
-            foreach (SerializationEntry item in info)
+            if (graph is ISerializable data)
             {
-
-                if (item.Value is ISerializable && item.Value != null)
+                SerializationInfo info = new SerializationInfo(graph.GetType(), new FormatterConverter());
+                info.AddValue("id", IdGenerator.GetId(graph, out FirtsTime));
+                info.AddValue("ClassType", graph.GetType().FullName);
+                StreamingContext context = new StreamingContext(StreamingContextStates.File);
+                data.GetObjectData(info, context);
+                foreach (SerializationEntry item in info)
                 {
-                    fileContent += item.Name + "|" + IdGenerator.GetId(item.Value, out firtsTime) + "\n";
-                    if (firtsTime == true)
+                    if (item.Value is ISerializable && item.Value != null && item.Value.GetType() != typeof(DateTime))
                     {
-                        Serialize(serializationStream, item.Value);
+                        WriteMember(item.Name, item.Value);
+                        if (FirtsTime == true)
+                        {
+                            Serialize(serializationStream, item.Value);
+                        }
+                    }
+                    else
+                    {
+                        WriteMember(item.Name, item.Value);
                     }
                 }
-                else
-                {
-                    fileContent += item.Name + "|" + item.Value + "|";
-                }
+                byte[] content = Encoding.UTF8.GetBytes(FileContent);
+                serializationStream.Write(content, 0, content.Length);
+                FileContent = "";
             }
-                
-            byte[] content = Encoding.UTF8.GetBytes(fileContent);
-            serializationStream.Write(content, 0, content.Length);
+            else
+            {
+                throw new ArgumentException("Implementation of is mandatory");
+            }
+        }
+
+        protected override void WriteDateTime(DateTime val, string name)
+        {
+            FileContent += name + "|" + val.ToString("d", DateTimeFormatInfo.InvariantInfo) + "|";
+        }
+
+        protected override void WriteDouble(double val, string name)
+        {
+            FileContent += name + "|" + val.ToString("G", CultureInfo.InvariantCulture) + "|";
+        }
+
+        protected void WriteString(object str, string name)
+        {
+            FileContent += name + "|" + (string)str + "|";
+        }
+
+        protected override void WriteObjectRef(object obj, string name, Type memberType)
+        {
+            if (memberType.Equals(typeof(string)))
+            {
+                WriteString(obj, name);
+            }
+            else
+            {
+                FileContent += name + "|" + IdGenerator.GetId(obj, out FirtsTime) + "\n";
+            }
+        }
+
+        protected override void WriteInt64(long val, string name)
+        {
+            FileContent += name + "|" + val.ToString() + "|";
+        }
+
+        protected override void WriteSingle(float val, string name)
+        {
+            FileContent += name + "|" + val.ToString("0.00", CultureInfo.InvariantCulture) + "|";
         }
 
         protected override void WriteArray(object obj, string name, Type memberType)
@@ -106,17 +162,7 @@ namespace Zadanie2
             throw new NotImplementedException();
         }
 
-        protected override void WriteDateTime(DateTime val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
         protected override void WriteDecimal(decimal val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteDouble(double val, string name)
         {
             throw new NotImplementedException();
         }
@@ -131,22 +177,7 @@ namespace Zadanie2
             throw new NotImplementedException();
         }
 
-        protected override void WriteInt64(long val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteObjectRef(object obj, string name, Type memberType)
-        {
-            throw new NotImplementedException();
-        }
-
         protected override void WriteSByte(sbyte val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteSingle(float val, string name)
         {
             throw new NotImplementedException();
         }

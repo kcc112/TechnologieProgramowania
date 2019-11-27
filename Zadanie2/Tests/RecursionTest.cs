@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.Recurrent_Model;
 using Zadanie2;
@@ -8,40 +9,14 @@ namespace Tests
     [TestClass]
     public class RecursionTest
     {
-        [TestMethod]
-        public void TestJsonProperty()
-        {
-            C ouputC = new C(null, "KlasaC");
-            A a = new A(null, "KlasaA", 2.1);
-            B b = new B(null, "KlasaB");
-            C c = new C(null, "KlasaC");
-
-            a.ClassB = b;
-            b.ClassC = c;
-            c.ClassA = a;
-
-            string filename = "json_serialization_results_.json";
-            File.Delete(filename);
-            Stream streamSerialize = File.Open(filename, FileMode.Create, FileAccess.ReadWrite);
-            JsonFormatter.Serialize(c, streamSerialize);
-            streamSerialize.Close();
-
-            Stream streamDeserialize = File.Open(filename, FileMode.Open, FileAccess.ReadWrite);
-            ouputC = JsonFormatter.Deserialize<C>(streamDeserialize);
-            streamDeserialize.Close();
-
-            Assert.AreEqual(a.ExampleDouble, 2.1);
-            Assert.AreEqual(b.ClassName, "KlasaB");
-            Assert.AreEqual(c.ClassName, "KlasaC");
-        }
 
         [TestMethod]
-        public void CorrectFormatterTest()
+        public void TestCorrectFormatterReferences()
         {
-            C ouputC = new C(null, "KlasaC");
+            C ouputC = new C(null, "KlasaC", 6.4f);
             A a = new A(null, "KlasaA", 2.1);
-            B b = new B(null, "KlasaB");
-            C c = new C(null, "KlasaC");
+            B b = new B(null, "KlasaB", new DateTime(2017, 10, 1));
+            C c = new C(null, "KlasaC", 5.4f);
 
             a.ClassB = b;
             b.ClassC = c;
@@ -61,7 +36,9 @@ namespace Tests
             Assert.AreEqual(c.ClassName, ouputC.ClassName);
             A a2 = ouputC.ClassA;
             Assert.AreEqual(a.ClassName, a2.ClassName);
+            Assert.AreEqual(a.ExampleDouble, a2.ExampleDouble);
             B b2 = a2.ClassB;
+            Assert.AreEqual(b.ExampleDateTime, b2.ExampleDateTime);
             Assert.AreEqual(b.ClassName, b2.ClassName);
 
             Assert.AreSame(ouputC.ClassA, a2);
@@ -72,10 +49,10 @@ namespace Tests
         [TestMethod]
         public void TestJsonReferences()
         {
-            C ouputC = new C(null, "KlasaC");
+            C ouputC = new C(null, "KlasaC", 6.4f);
             A a = new A(null, "KlasaA", 2.1);
-            B b = new B(null, "KlasaB");
-            C c = new C(null, "KlasaC");
+            B b = new B(null, "KlasaB", new DateTime(2017, 10, 1));
+            C c = new C(null, "KlasaC", 5.4f);
 
             a.ClassB = b;
             b.ClassC = c;
