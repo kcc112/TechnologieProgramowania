@@ -190,14 +190,14 @@ namespace Tests
             JsonFormatter.Deserialize(ref newContextToDerialize, streamDeserialize);
             streamDeserialize.Close();
 
-            Assert.AreEqual(newContextToDerialize.a[0].ClassB, newContextToDerialize.b[0]);
-            Assert.AreEqual(newContextToDerialize.b[0].ClassC, newContextToDerialize.c[0]);
-            Assert.AreEqual(newContextToDerialize.c[0].ClassA, newContextToDerialize.a[0]);
+            Assert.AreSame(newContextToDerialize.a[0].ClassB, newContextToDerialize.b[0]);
+            Assert.AreSame(newContextToDerialize.b[0].ClassC, newContextToDerialize.c[0]);
+            Assert.AreSame(newContextToDerialize.c[0].ClassA, newContextToDerialize.a[0]);
 
-            Assert.AreEqual(newContextToDerialize.a[1].ClassB, newContextToDerialize.b[1]);
-            Assert.AreEqual(newContextToDerialize.b[1].ClassC, newContextToDerialize.c[1]);
-            Assert.AreEqual(newContextToDerialize.c[1].ClassA, newContextToDerialize.a[1]);
-            Assert.AreEqual(newContextToDerialize.c[1].ClassA, newContextToDerialize.a[1]);
+            Assert.AreSame(newContextToDerialize.a[1].ClassB, newContextToDerialize.b[1]);
+            Assert.AreSame(newContextToDerialize.b[1].ClassC, newContextToDerialize.c[1]);
+            Assert.AreSame(newContextToDerialize.c[1].ClassA, newContextToDerialize.a[1]);
+            Assert.AreSame(newContextToDerialize.c[1].ClassA, newContextToDerialize.a[1]);
         }
     }
 }
