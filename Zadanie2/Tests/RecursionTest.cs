@@ -69,12 +69,14 @@ namespace Tests
             ouputC = JsonFormatter.Deserialize<C>(streamDeserialize);
             streamDeserialize.Close();
 
-            A a2 = ouputC.ClassA;
-            B b2 = a2.ClassB;
+            Assert.AreSame(newContextToDerialize.a[0].ClassB, newContextToDerialize.b[0]);
+            Assert.AreSame(newContextToDerialize.b[0].ClassC, newContextToDerialize.c[0]);
+            Assert.AreSame(newContextToDerialize.c[0].ClassA, newContextToDerialize.a[0]);
 
-            Assert.AreSame(ouputC.ClassA, a2);
-            Assert.AreSame(a2.ClassB, b2);
-            Assert.AreSame(b2.ClassC, ouputC);
+            Assert.AreSame(newContextToDerialize.a[1].ClassB, newContextToDerialize.b[1]);
+            Assert.AreSame(newContextToDerialize.b[1].ClassC, newContextToDerialize.c[1]);
+            Assert.AreSame(newContextToDerialize.c[1].ClassA, newContextToDerialize.a[1]);
+            Assert.AreSame(newContextToDerialize.c[1].ClassA, newContextToDerialize.a[1]);
         }
     }
 }
