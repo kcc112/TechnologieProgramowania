@@ -23,24 +23,5 @@ namespace Zadanie1
         {
             return $"Data: { Data } | " + Wykaz.ToString() + OpisStanu.ToString();
         }
-
-        public string Serialize(ObjectIDGenerator idGenerator)
-        {
-            string data = "";
-            data += GetType().FullName + "|";
-            data += idGenerator.GetId(Wykaz, out bool firstTime) + "|";
-            data += idGenerator.GetId(OpisStanu, out firstTime) + "|";
-            data += Data.ToString() + "|";
-            data += idGenerator.GetId(this, out firstTime) + "|";
-            return data;
-        }
-
-        public void Deserialize(List<string> data, Dictionary<string, OpisStanu> helperOpisStanu, Dictionary<string, Wykaz> helperWykaz)
-        {
-            Wykaz = helperWykaz[data[1]];
-            OpisStanu = helperOpisStanu[data[2]];
-            Data = Convert.ToDateTime(data[3]);
-        } 
-
     }
 }
