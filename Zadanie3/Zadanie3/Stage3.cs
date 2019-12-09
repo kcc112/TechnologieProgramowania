@@ -104,5 +104,91 @@ namespace Zadanie3
                 return (int)output.Sum();
             }
         }
+
+        public static List<Product> GetProductsByNameExtend(string namePart)
+        {
+            using (ProductionDataContext db = new ProductionDataContext())
+            {
+                var output = db.Products.Where(product => product.Name.Contains(namePart));
+
+                return output.ToList();
+            }
+        }
+
+        public static List<Product> GetProductsByVendorNameExtend(string vendorName)
+        {
+            using (ProductionDataContext db = new ProductionDataContext())
+            {
+                var output = db.ProductVendors.Where(vendor => vendor.Vendor.Name.Equals(vendorName))
+                                              .Select(vendor => vendor.Product);
+
+                return output.ToList();
+            }
+        }
+
+        public static List<string> GetProductNamesByVendorNameExtend(string vendorName)
+        {
+            using (ProductionDataContext db = new ProductionDataContext())
+            {
+                var output = db.ProductVendors.Where(vendor => vendor.Vendor.Name.Equals(vendorName))
+                                              .Select(vendor => vendor.Product.Name);
+
+                return output.ToList();
+            }
+        }
+
+        public static string GetProductVendorByProductNameExtend(string productName)
+        {
+            using (ProductionDataContext db = new ProductionDataContext())
+            {
+                var output = db.ProductVendors.Where(vendor => vendor.Product.Name.Equals(productName))
+                                              .Select(vendor => vendor.Vendor.Name);
+
+                return output.FirstOrDefault();
+            }
+        }
+
+        public static List<Product> GetProductsWithNRecentReviewsExtend(int howManyReviews)
+        {
+            using (ProductionDataContext db = new ProductionDataContext())
+            {
+                var output = db.Products.Where(product => product.ProductReviews.Count.Equals(howManyReviews));
+
+                return output.ToList();
+            }
+        }
+
+        public static List<Product> GetNRecentlyReviewedProductsExtend(int howManyProducts)
+        {
+            using (ProductionDataContext db = new ProductionDataContext())
+            {
+                var output = db.Products.Join(db.ProductReviews, product => product.ProductID, review => review.ProductID,
+                                     (product, review) => new { Product = product, Review = review }).OrderByDescending(review => review.Review.ReviewDate)
+                                     .Select(product => product.Product);
+
+                return output.Take(howManyProducts).ToList();
+            }
+        }
+
+        public static List<Product> GetNProductsFromCategoryExtend(string categoryName, int number)
+        {
+            using (ProductionDataContext db = new ProductionDataContext())
+            {
+                var output = db.Products.OrderBy(product => product.ProductSubcategory.ProductCategory.Name.Equals(categoryName));
+
+                return output.Take(number).ToList();
+            }
+        }
+
+        public static int GetTotalStandardCostByCategoryExtend(ProductCategory category)
+        {
+            using (ProductionDataContext db = new ProductionDataContext())
+            {
+                var output = db.Products.Where(product => product.ProductSubcategory.ProductCategory.Name.Equals(category.Name))
+                                        .Select(product => product.StandardCost);
+
+                return (int)output.Sum();
+            }
+        }
     }
 }
