@@ -9,6 +9,7 @@ namespace Tests
     [TestClass]
     public class Stage4Test
     {
+        #region Declarative - used from
         [TestMethod]
         public void GetProductsWithoutCategoryDeclarative()
         {
@@ -47,7 +48,9 @@ namespace Tests
                 Assert.AreEqual("Adjustable Race-Litware, Inc.", firstPair);
             }
         }
+        #endregion
 
+        #region Imperative - used Extension Methods
         [TestMethod]
         public void GetProductsWithoutCategoryImperative()
         {
@@ -86,5 +89,6 @@ namespace Tests
                 Assert.AreEqual("Adjustable Race-Litware, Inc.", firstPair);
             }
         }
+        #endregion
     }
 }

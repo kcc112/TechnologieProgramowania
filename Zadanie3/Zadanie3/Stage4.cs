@@ -8,6 +8,7 @@ namespace Zadanie3
 {
     public static class Stage4
     {
+        #region Declarative - used from
         public static List<Product> GetProductsWithoutCategoryDeclarative(this List<Product> products)
         {
             var output = from product in products
@@ -19,8 +20,8 @@ namespace Zadanie3
 
         public static List<Product> SplitToPagesDeclarative(this List<Product> products, int size, int pageNumber)
         {
-            var output =  from product in products
-                          select product;
+            var output = from product in products
+                         select product;
 
             return output.Skip((pageNumber - 1) * size).Take(size).ToList();
         }
@@ -30,10 +31,10 @@ namespace Zadanie3
 
             StringBuilder stringBuilder = new StringBuilder();
 
-            var productsAndVendors =  from product in products
-                                      from productVendor in productVendors
-                                      where productVendor.ProductID == product.ProductID
-                                      select new { Product = product.Name, Vendor = productVendor.Vendor.Name };
+            var productsAndVendors = from product in products
+                                     from productVendor in productVendors
+                                     where productVendor.ProductID == product.ProductID
+                                     select new { Product = product.Name, Vendor = productVendor.Vendor.Name };
 
             foreach (var productAndVendor in productsAndVendors)
             {
@@ -41,7 +42,9 @@ namespace Zadanie3
             }
             return stringBuilder.ToString();
         }
+        #endregion
 
+        #region Imperative - used Extension Methods
         public static List<Product> GetProductsWithoutCategoryImperativ(this List<Product> products)
         {
             return products.Where(p => p.ProductSubcategory == null).ToList();
@@ -63,5 +66,6 @@ namespace Zadanie3
             }
             return stringBuilder.ToString();
         }
+        #endregion
     }
 }

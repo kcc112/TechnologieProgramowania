@@ -8,7 +8,8 @@ namespace Tests
     [TestClass]
     public class Stage3Test
     {
-
+        #region Declarative - used from
+        #region Get by name
         [TestMethod]
         public void GetProductsByNameTest()
         {
@@ -39,7 +40,9 @@ namespace Tests
             string product = Stage3.GetProductVendorByProductName("Flat Washer 1");
             Assert.AreEqual("Continental Pro Cycles", product);
         }
+        #endregion
 
+        #region Count
         [TestMethod]
         public void GetProductsWithNRecentReviewsTest()
         {
@@ -62,7 +65,9 @@ namespace Tests
             List<Product> products = Stage3.GetNProductsFromCategory("Bikes", 1);
             Assert.AreEqual(1, products.Count);
         }
+        #endregion
 
+        #region Sum
         [TestMethod]
         public void GetTotalStandardCostByCategoryTest()
         {
@@ -73,7 +78,11 @@ namespace Tests
 
             Assert.AreEqual(383, Stage3.GetTotalStandardCostByCategory(accessories));
         }
+        #endregion
+        #endregion
 
+        #region Imperative - used Extension Methods
+        #region Get by name
         [TestMethod]
         public void GetProductsByNameExtendTest()
         {
@@ -104,7 +113,9 @@ namespace Tests
             string product = Stage3.GetProductVendorByProductNameExtend("Flat Washer 1");
             Assert.AreEqual("Continental Pro Cycles", product);
         }
+        #endregion
 
+        #region Count
         [TestMethod]
         public void GetProductsWithNRecentReviewsExtendTest()
         {
@@ -127,7 +138,9 @@ namespace Tests
             List<Product> products = Stage3.GetNProductsFromCategoryExtend("Bikes", 1);
             Assert.AreEqual(1, products.Count);
         }
+        #endregion
 
+        #region Sum
         [TestMethod]
         public void GetTotalStandardCostByCategoryExtendTest()
         {
@@ -138,5 +151,7 @@ namespace Tests
 
             Assert.AreEqual(383, Stage3.GetTotalStandardCostByCategoryExtend(accessories));
         }
+        #endregion
+        #endregion
     }
 }
