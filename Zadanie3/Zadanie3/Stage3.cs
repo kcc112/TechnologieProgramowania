@@ -8,6 +8,8 @@ namespace Zadanie3
 {
     public class Stage3
     {
+        #region Declarative - used from
+        #region Get by name
         public static List<Product> GetProductsByName(string namePart)
         {
             using (ProductionDataContext db = new ProductionDataContext())
@@ -55,7 +57,9 @@ namespace Zadanie3
                 return output.FirstOrDefault();
             }
         }
+        #endregion
 
+        #region Count
         public static List<Product> GetProductsWithNRecentReviews(int howManyReviews)
         {
             using (ProductionDataContext db = new ProductionDataContext())
@@ -92,7 +96,9 @@ namespace Zadanie3
                 return output.Take(number).ToList();
             }
         }
+        #endregion
 
+        #region Sum
         public static int GetTotalStandardCostByCategory(ProductCategory category)
         {
             using (ProductionDataContext db = new ProductionDataContext())
@@ -104,7 +110,11 @@ namespace Zadanie3
                 return (int)output.Sum();
             }
         }
+        #endregion
+        #endregion
 
+        #region Imperative - used Extension Methods
+        #region Get by name
         public static List<Product> GetProductsByNameExtend(string namePart)
         {
             using (ProductionDataContext db = new ProductionDataContext())
@@ -147,7 +157,9 @@ namespace Zadanie3
                 return output.FirstOrDefault();
             }
         }
+        #endregion
 
+        #region Count
         public static List<Product> GetProductsWithNRecentReviewsExtend(int howManyReviews)
         {
             using (ProductionDataContext db = new ProductionDataContext())
@@ -179,7 +191,9 @@ namespace Zadanie3
                 return output.Take(number).ToList();
             }
         }
+        #endregion
 
+        #region Sum
         public static int GetTotalStandardCostByCategoryExtend(ProductCategory category)
         {
             using (ProductionDataContext db = new ProductionDataContext())
@@ -190,5 +204,7 @@ namespace Zadanie3
                 return (int)output.Sum();
             }
         }
+        #endregion
+        #endregion
     }
 }
