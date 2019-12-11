@@ -7,8 +7,6 @@ using Zadanie3.LinqToSql;
 
 
 
-
-
 namespace Zadanie3.LinqToSql
 {
 
@@ -20,6 +18,8 @@ namespace Zadanie3.LinqToSql
             Name = product.Name;
             ProductID = product.ProductID;
             ProductReviews = product.ProductReviews;
+            ProductSubcategory = product.ProductSubcategory;
+            ProductSubcategoryID = product.ProductSubcategoryID;
         }
 
         public static List<MyProduct> GetMyProductByName(string namePart)
@@ -40,14 +40,17 @@ namespace Zadanie3.LinqToSql
             return output.ToList();
         }
 
-        //public static List<MyProduct> GetNRecentlyReviewedProducts(int howManyProducts)
-        //{
-        //    var output = from product in MyProductRepository.myProducts
-        //                 join review in ProductReviews on product.ProductID equals review.ProductID
-        //                 orderby review.ReviewDate descending
-        //                 select product;
+        public static List<MyProduct> GetNRecentlyReviewedProducts(int howManyProducts)
+        {
+            using (ProductionDataContext db = new ProductionDataContext())
+            {
+                var output = from product in MyProductRepository.myProducts
+                             join review in db.ProductReviews on product.ProductID equals review.ProductID
+                             orderby review.ReviewDate descending
+                             select product;
 
-        //    return output.Take(howManyProducts).ToList();
-        //}
+                return output.Take(howManyProducts).ToList();
+            }
+        }
     }
 }
