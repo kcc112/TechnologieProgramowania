@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ViewData\ViewData\ViewData.csproj">
+      <Project>{8567a41a-6f72-46a9-9abc-4c28416d089d}</Project>
+      <Name>ViewData</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
