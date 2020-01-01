@@ -27,11 +27,22 @@ namespace DataLayer.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Projekty\\Zadanie4\\DataLaye" +
-            "r\\Tests\\DBConnection\\AdventureWorks2014_Data.mdf;Integrated Security=True;Connec" +
-            "t Timeout=30")]
+            "r\\DBConnection\\AdventureWorks2014_Data.mdf;Integrated Security=True;Connect Time" +
+            "out=30")]
         public string AdventureWorks2014_DataConnectionString {
             get {
                 return ((string)(this["AdventureWorks2014_DataConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\DBConnection\\" +
+            "AdventureWorks2014_Data.mdf;Integrated Security=True")]
+        public string AdventureWorks2014_DataConnectionString1 {
+            get {
+                return ((string)(this["AdventureWorks2014_DataConnectionString1"]));
             }
         }
     }

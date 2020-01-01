@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DataLayer
+namespace ServiceLayer
 {
     public class DataRepository : IDataRepository
     {

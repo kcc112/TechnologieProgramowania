@@ -1,7 +1,7 @@
 ﻿using DataLayer.SqlConnection;
 using System.Collections.Generic;
 
-namespace DataLayer
+namespace ServiceLayer
 {
     public interface IDataRepository
     {
