@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DataLayer.SqlConnection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ServiceLayer;
@@ -15,43 +16,39 @@ namespace Tests
             [TestMethod]
             public void GetAllProductCategoryTest()
             {
-                IDataRepository dataRepository = new DataRepository();
-                List<ProductCategory> productCategories = dataRepository.GetAllProductCategories();
-                Assert.AreEqual(4, productCategories.Count);
+                IEnumerable<ProductCategory> productCategories = DataRepository.GetAllProductCategories();
+                Assert.AreEqual(4, productCategories.ToList().Count);
             }
 
             [TestMethod]
             public void AddProductCategoryTest()
             {
-                IDataRepository dataRepository = new DataRepository();
                 ProductCategory productCategory = new ProductCategory
                 {
                     Name = "Kamil",
                     ModifiedDate = DateTime.Today
                 };
 
-                dataRepository.AddProductCategory(productCategory);
-                List<ProductCategory> productCategories = dataRepository.GetAllProductCategories();
-                Assert.AreEqual(5, productCategories.Count);
+                DataRepository.AddProductCategory(productCategory);
+                IEnumerable<ProductCategory> productCategories = DataRepository.GetAllProductCategories();
+                Assert.AreEqual(5, productCategories.ToList().Count);
             }
 
             [TestMethod]
             public void DeleteProductCategoryTest()
             {
-                IDataRepository dataRepository = new DataRepository();
-                dataRepository.DeleteProductCategory(5);
-                List<ProductCategory> productCategories = dataRepository.GetAllProductCategories();
-                Assert.AreEqual(4, productCategories.Count);
+                DataRepository.DeleteProductCategory(5);
+                IEnumerable<ProductCategory> productCategories = DataRepository.GetAllProductCategories();
+                Assert.AreEqual(4, productCategories.ToList().Count);
             }
 
 
             [TestMethod]
             public void UpdateUpdateProductCategory()
             {
-                IDataRepository dataRepository = new DataRepository();
-                dataRepository.UpdateProductCategory("Mirek", 1);
-                List<ProductCategory> scrapReasons = dataRepository.GetAllProductCategories();
-                Assert.AreEqual("Mirek", scrapReasons[0].Name);
+                DataRepository.UpdateProductCategory("Mirek", 1);
+                IEnumerable<ProductCategory> scrapReasons = DataRepository.GetAllProductCategories();
+                Assert.AreEqual("Mirek", scrapReasons.ToList()[0].Name);
             }
         }
     }

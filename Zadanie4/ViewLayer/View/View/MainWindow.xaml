@@ -6,17 +6,41 @@
         xmlns:local="clr-namespace:View"
         xmlns:vm="clr-namespace:ViewData.ViewModel;assembly=ViewData"
         mc:Ignorable="d"
-        Title="Manage product category" Height="450" Width="800">
+        Title="Manage product category" Height="553.5" Width="1101.5">
     <Window.Resources>
         <vm:MainViewModel x:Key="MainViewModel"/>
     </Window.Resources>
-    <Grid>
-        <Button Content="ProductCategory" HorizontalAlignment="Left" Height="37" Margin="10,10,0,0" VerticalAlignment="Top" Width="160"  Command="{Binding FetchDataCommend}"/>
-        <Button Content="Add ProductCategory" HorizontalAlignment="Left" Height="40" Margin="10,52,0,0" VerticalAlignment="Top" Width="160"/>
-        <Button Content="Remove ProductCategory" HorizontalAlignment="Left" Height="40" Margin="10,97,0,0" VerticalAlignment="Top" Width="160"/>
-        <Button Content="Update Product" HorizontalAlignment="Left" Height="43" Margin="10,142,0,0" VerticalAlignment="Top" Width="160"/>
-        <Grid HorizontalAlignment="Left" Height="311" VerticalAlignment="Top" Width="397" Margin="287,24,0,0" >
-            
+    <StackPanel DataContext="{StaticResource MainViewModel}" Orientation="Vertical">
+        <Label Content="List of Persons:" FontSize="18" FontWeight="Bold" Margin="7,0,10,0" Grid.Column="0"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
         </Grid>
-    </Grid>
+        <ListBox ItemsSource="{Binding Path=ProductCategories, Mode=OneWay}" SelectedItem="{Binding ProductCategory}" Height="200" Margin="10,0,10,10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Margin="10,0,10,10">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Connect to datebase" HorizontalAlignment="Center" Grid.Column="0" Command="{Binding FetchDataCommand}"/>
+        </Grid>
+    </StackPanel>
 </Window>

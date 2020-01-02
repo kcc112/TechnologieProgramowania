@@ -81,7 +81,7 @@ namespace DataLayer.SqlConnection
     #endregion
 		
 		public ProductionDataContext() : 
-				base(global::DataLayer.Properties.Settings.Default.AdventureWorks2014_DataConnectionString1, mappingSource)
+				base(global::DataLayer.Properties.Settings.Default.AdventureWorks2014_DataConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

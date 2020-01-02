@@ -4,17 +4,16 @@ using System.Linq;
 
 namespace ServiceLayer
 {
-    public class DataRepository : IDataRepository
+    public class DataRepository
     {
-        public List<ProductCategory> GetAllProductCategories()
-        {
-            using (ProductionDataContext db = new ProductionDataContext())
-            {
-                IQueryable<ProductCategory> output = from productCategory in db.ProductCategories
-                                                     select productCategory;
 
-                return output.ToList();
-            }
+        private ProductionDataContext db = new ProductionDataContext();
+
+        public IEnumerable<ProductCategory> GetAllProductCategories()
+        {
+            IQueryable<ProductCategory> output = from productCategory in db.ProductCategories
+                                                 select productCategory;
+            return output;
         }
 
         public void AddProductCategory(ProductCategory productCategory)
@@ -26,7 +25,7 @@ namespace ServiceLayer
             }
         }
 
-        public void UpdateProductCategory(string name, int id)
+        public  void UpdateProductCategory(string name, int id)
         {
             using (ProductionDataContext db = new ProductionDataContext())
             {
