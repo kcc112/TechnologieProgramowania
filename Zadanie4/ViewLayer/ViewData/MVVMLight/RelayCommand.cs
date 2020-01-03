@@ -20,20 +20,17 @@ namespace ViewData.MVVM
         /// </summary>
         /// <param name="execute">The execution logic encapsulated by the <paramref name="execute"/> delegate. </param>
         /// <exception cref="T:System.ArgumentNullException">If the <paramref name="execute"/> argument is null.</exception>
-        public RelayCommand(Action execute) : this(execute, null)
-        { }
+        public RelayCommand(Action execute) : this(execute, null) { }
         /// <summary>
         /// Initializes a new instance of the RelayCommand class.
         /// </summary>
         /// <param name="canExecute">The execution status logic encapsulated by the <paramref name="canExecute"/> delegate.
-        /// </param>
+        /// </param
         /// <exception cref="T:System.ArgumentNullException">If the execute argument is null.</exception>
         public RelayCommand(Action execute, Func<bool> canExecute)
         {
-            if (execute == null)
-                throw new ArgumentNullException(nameof(execute));
-            this.m_Execute = execute;
-            this.m_CanExecute = canExecute;
+            m_Execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            m_CanExecute = canExecute;
         }
         #endregion
 
@@ -46,11 +43,11 @@ namespace ViewData.MVVM
         /// <returns><c>true</c> if this command can be executed; otherwise, <c>false</c>.</returns>
         public bool CanExecute(object parameter)
         {
-            if (this.m_CanExecute == null)
+            if (m_CanExecute == null)
                 return true;
             if (parameter == null)
-                return this.m_CanExecute();
-            return this.m_CanExecute();
+                return m_CanExecute();
+            return m_CanExecute();
         }
         /// <summary>
         /// Defines the method to be called when the command is invoked.
@@ -59,7 +56,7 @@ namespace ViewData.MVVM
         /// to be passed, this parameter is always ignored</param>
         public virtual void Execute(object parameter)
         {
-            this.m_Execute();
+            m_Execute();
         }
         /// <summary>
         /// Occurs when changes occur that affect whether the command should execute.
@@ -73,7 +70,7 @@ namespace ViewData.MVVM
         /// </summary>
         internal void RaiseCanExecuteChanged()
         {
-            this.CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
         #endregion
 
@@ -81,6 +78,5 @@ namespace ViewData.MVVM
         private readonly Action m_Execute;
         private readonly Func<bool> m_CanExecute;
         #endregion
-
     }
 }

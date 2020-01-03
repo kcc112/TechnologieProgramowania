@@ -12,6 +12,16 @@ namespace ViewData.ViewModel
     {
         public MainViewModel()
         {
+            viewModelHelper = new ViewModelHelper();
+            DataLayer = new DataRepository();
+            FetchDataCommand = new RelayCommand(() => DataLayer = new DataRepository());
+            AddCategoryCommand = new RelayCommand(AddCategory);
+            RemoveCategoryCommand= new RelayCommand(RemoveCategory);
+        }
+
+        public MainViewModel(IViewModelHelper _IViewModelHelper)
+        {
+            viewModelHelper = _IViewModelHelper;
             DataLayer = new DataRepository();
             FetchDataCommand = new RelayCommand(() => DataLayer = new DataRepository());
             AddCategoryCommand = new RelayCommand(AddCategory);
@@ -47,7 +57,11 @@ namespace ViewData.ViewModel
             set
             {
                 m_DataLayer = value;
-                ProductCategories = new ObservableCollection<ProductCategory>(value.GetAllProductCategories());
+
+                Task.Run(() =>
+                {
+                    ProductCategories = new ObservableCollection<ProductCategory>(value.GetAllProductCategories());
+                });
             }
         }
 
@@ -60,10 +74,17 @@ namespace ViewData.ViewModel
                 rowguid = Guid.NewGuid()
             };
 
-            Task.Run(() =>
+            if (productCategory.Name == null)
             {
-                m_DataLayer.AddProductCategory(productCategory);
-            });
+                viewModelHelper.Show("FirstName and Lastname cannot be empty", "Adding new Person error");
+            }
+            else
+            {
+                Task.Run(() =>
+                {
+                    m_DataLayer.AddProductCategory(productCategory);
+                });
+            }
         }
 
         public void RemoveCategory()
@@ -93,6 +114,7 @@ namespace ViewData.ViewModel
         private ProductCategory m_ProductCategory;
         private ObservableCollection<ProductCategory> m_ProductCategories;
 
+        public IViewModelHelper viewModelHelper;
         public string Name { get; set; }
         public int ID { get; set; }
     }

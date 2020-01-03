@@ -95,8 +95,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ViewData\ViewData\ViewData.csproj">
-      <Project>{8567a41a-6f72-46a9-9abc-4c28416d089d}</Project>
+    <ProjectReference Include="..\..\ViewData\ViewData.csproj">
+      <Project>{1168fce3-51f6-4000-8b42-dd4458775e5c}</Project>
       <Name>ViewData</Name>
     </ProjectReference>
   </ItemGroup>
