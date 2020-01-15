@@ -32,7 +32,12 @@ namespace ViewDataTest
         [TestMethod]
         public void UpdateCategoryTest()
         {
-
+            IViewModelHelper viewModelHelper = new ViewModelHelperFake();
+            MainViewModel viewModel = new MainViewModel(viewModelHelper);
+            viewModel.Name = "Test";
+            viewModel.ID = 1;
+            viewModel.UpdateCategoryCommand.Execute(null);
+            Assert.IsNull(viewModel.DataLayer.GetProductCategoryByName("Bikes"));
         }
     }
 }
