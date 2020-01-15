@@ -17,6 +17,7 @@ namespace ViewData.ViewModel
             FetchDataCommand = new RelayCommand(() => DataLayer = new DataRepository());
             AddCategoryCommand = new RelayCommand(AddCategory);
             RemoveCategoryCommand= new RelayCommand(RemoveCategory);
+            UpdateCategoryCommand = new RelayCommand(UpdateCategory);
         }
 
         public MainViewModel(IViewModelHelper _IViewModelHelper)
@@ -26,6 +27,7 @@ namespace ViewData.ViewModel
             FetchDataCommand = new RelayCommand(() => DataLayer = new DataRepository());
             AddCategoryCommand = new RelayCommand(AddCategory);
             RemoveCategoryCommand= new RelayCommand(RemoveCategory);
+            UpdateCategoryCommand = new RelayCommand(UpdateCategory);
         }
        
         public ObservableCollection<ProductCategory> ProductCategories
@@ -95,6 +97,21 @@ namespace ViewData.ViewModel
             });
         }
 
+        public void UpdateCategory()
+        {
+            if (Name == null || Name == "")
+            {
+                viewModelHelper.Show("Category name cannot be empty", "Update category error");
+            }
+            else
+            {
+                Task.Run(() =>
+                {
+                    m_DataLayer.UpdateProductCategory(Name, ID);
+                });
+            }
+        }
+
         public RelayCommand FetchDataCommand
         {
             get; private set;
@@ -106,6 +123,11 @@ namespace ViewData.ViewModel
         }
 
         public RelayCommand RemoveCategoryCommand
+        {
+            get; private set;
+        }
+
+        public RelayCommand UpdateCategoryCommand
         {
             get; private set;
         }
