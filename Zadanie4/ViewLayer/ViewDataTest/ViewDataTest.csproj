@@ -57,6 +57,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DataLayer\DataLayer\DataLayer.csproj">
+      <Project>{ef076035-763d-47ec-a92c-d0bdc6161c10}</Project>
+      <Name>DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceLayer\ServiceLayer\ServiceLayer.csproj">
+      <Project>{e124a1b6-8de2-44fc-93f3-c881359719d7}</Project>
+      <Name>ServiceLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ViewData\ViewData.csproj">
       <Project>{1168fce3-51f6-4000-8b42-dd4458775e5c}</Project>
       <Name>ViewData</Name>
