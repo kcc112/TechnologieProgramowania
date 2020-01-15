@@ -9,5 +9,6 @@ namespace ServiceLayer
         void AddProductCategory(ProductCategory productCategory);
         void UpdateProductCategory(string name, int id);
         void DeleteProductCategory(int id);
+        ProductCategory GetProductCategoryById(int id);
     }
 }

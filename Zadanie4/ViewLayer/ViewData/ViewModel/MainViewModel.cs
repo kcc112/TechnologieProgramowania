@@ -15,7 +15,9 @@ namespace ViewData.ViewModel
             DataLayer = new DataRepository();
             FetchDataCommand = new RelayCommand(() => DataLayer = new DataRepository());
             AddCategoryCommand = new RelayCommand(AddCategory);
-            RemoveCategoryCommand= new RelayCommand(RemoveCategory);
+            RemoveCategoryCommand = new RelayCommand(RemoveCategory);
+            InfoCategoryCommand = new RelayCommand(Info);
+            UpdateCategoryCommand = new RelayCommand(UpdateCategory);
         }
        
         public ObservableCollection<ProductCategory> ProductCategories
@@ -66,7 +68,7 @@ namespace ViewData.ViewModel
 
             if (productCategory.Name == null)
             {
-                ViewModelHelper.Show("FirstName and Lastname cannot be empty", "Adding new Person error");
+                ViewModelHelper.Show("Name cannot be empty", "Add");
             }
             else
             {
@@ -77,19 +79,45 @@ namespace ViewData.ViewModel
             }
         }
 
+        public void UpdateCategory()
+        {
+            if (Name == null || ID == 0)
+            {
+                ViewModelHelper.Show("FirstName and ID cannot be empty", " Update");
+            }
+            else
+            {
+                Task.Run(() =>
+                {
+                    m_DataLayer.UpdateProductCategory(Name, ID);
+                });
+            }
+        }
+
         public void RemoveCategory()
         {
             Task.Run(() =>
             {
                 if (ID == 0)
                 {
-                    ViewModelHelper.Show("ID cannot be 0", "Adding new Person error");
+                    ViewModelHelper.Show("ID cannot be 0", "Remove");
                 }
                 else
                 {
                     m_DataLayer.DeleteProductCategory(ID);
                 }
             });
+        }
+
+        public void Info()
+        {
+            Task.Run(() =>
+            {
+                ProductCategories = new ObservableCollection<ProductCategory>();
+                ProductCategories.Add(m_DataLayer.GetProductCategoryById(ID));
+               ProductCategory = m_DataLayer.GetProductCategoryById(ID);
+            });
+            ViewModelHelper.ShowInfo();
         }
 
         public RelayCommand FetchDataCommand
@@ -103,6 +131,16 @@ namespace ViewData.ViewModel
         }
 
         public RelayCommand RemoveCategoryCommand
+        {
+            get; private set;
+        }
+
+        public RelayCommand InfoCategoryCommand
+        {
+            get; private set;
+        }
+
+        public RelayCommand UpdateCategoryCommand
         {
             get; private set;
         }

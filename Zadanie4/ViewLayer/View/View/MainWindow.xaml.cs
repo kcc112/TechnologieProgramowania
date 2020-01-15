@@ -19,12 +19,7 @@ namespace View
         {
             base.OnInitialized(e);
             MainViewModel _vm = (MainViewModel)DataContext;
-            //_vm.MessageBoxShowDelegate = text => MessageBox.Show(text, "Button interaction", MessageBoxButton.OK, MessageBoxImage.Information);
             _vm.ViewModelHelper = new ViewModelHelper();
-
-            // base.OnInitialized(e);
-            //MainViewModel _vm = (MainViewModel)DataContext;
-            //_vm.ChildWindow = new Lazy<IWindow>(() => new TreeViewMainWindow());
         }
 
     }

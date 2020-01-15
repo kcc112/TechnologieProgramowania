@@ -9,5 +9,10 @@ namespace View
         {
             MessageBox.Show(errorName, errorMessage, MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        public void ShowInfo()
+        {
+            new InfoView().Show();
+        }
     }
 }

@@ -48,5 +48,14 @@ namespace ServiceLayer
                 }
             }
         }
+
+        public ProductCategory GetProductCategoryById(int id)
+        {
+            using (ProductionDataContext db = new ProductionDataContext())
+            {
+                ProductCategory output = db.ProductCategories.SingleOrDefault(productCategory => productCategory.ProductCategoryID == id);
+                return output;
+            }
+        }
     }
 }

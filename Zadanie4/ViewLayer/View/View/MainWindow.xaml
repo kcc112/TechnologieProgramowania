@@ -31,10 +31,14 @@
                 <ColumnDefinition Width="239*"/>
                 <ColumnDefinition Width="298*"/>
                 <ColumnDefinition Width="298*"/>
+                <ColumnDefinition Width="298*"/>
+                <ColumnDefinition Width="298*"/>
             </Grid.ColumnDefinitions>
-            <Button BorderThickness="2" Content="Fetch Data" HorizontalAlignment="Center" Command="{Binding FetchDataCommand}" Margin="66.243,10,53.38,29.5" Width="187.642"/>
-            <Button BorderThickness="2" Content="Add category" HorizontalAlignment="Center" Command="{Binding AddCategoryCommand}" Margin="93.978,10,101.498,29.5" Width="187.642" Grid.Column="1"/>
-            <Button BorderThickness="2" Content="Remove category" HorizontalAlignment="Center" Command="{Binding RemoveCategoryCommand}" Margin="96.003,10,100.186,29.5" Width="187.642" Grid.Column="2"/>
+            <Button BorderThickness="2" Content="Fetch Data" HorizontalAlignment="Center" Command="{Binding FetchDataCommand}" Margin="26,10,20,29.5" Width="134"/>
+            <Button BorderThickness="2" Content="Add category" HorizontalAlignment="Center" Command="{Binding AddCategoryCommand}" Margin="44,10,44,29.5" Width="136" Grid.Column="1"/>
+            <Button BorderThickness="2" Content="Remove category" HorizontalAlignment="Center" Command="{Binding RemoveCategoryCommand}" Margin="52,10,38,29.5" Width="134" Grid.Column="2"/>
+            <Button BorderThickness="2" Content="Info" HorizontalAlignment="Center" Command="{Binding InfoCategoryCommand}" Margin="51,10,39,27.5" Width="134" Grid.Column="4"/>
+            <Button BorderThickness="2" Content="Update" HorizontalAlignment="Center" Command="{Binding UpdateCategoryCommand}" Margin="63,8,27,29.5" Width="134" Grid.Column="3"/>
         </Grid>
         <Grid>
             <Grid.RowDefinitions>
