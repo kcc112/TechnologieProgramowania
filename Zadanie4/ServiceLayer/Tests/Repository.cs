@@ -16,7 +16,8 @@ namespace Tests
             [TestMethod]
             public void GetAllProductCategoryTest()
             {
-                IEnumerable<ProductCategory> productCategories = DataRepository.GetAllProductCategories();
+                DataRepository dataRepository = new DataRepository();
+                IEnumerable<ProductCategory> productCategories = dataRepository.GetAllProductCategories();
                 Assert.AreEqual(4, productCategories.ToList().Count);
             }
 
@@ -29,16 +30,18 @@ namespace Tests
                     ModifiedDate = DateTime.Today
                 };
 
-                DataRepository.AddProductCategory(productCategory);
-                IEnumerable<ProductCategory> productCategories = DataRepository.GetAllProductCategories();
+                DataRepository dataRepository = new DataRepository();
+                dataRepository.AddProductCategory(productCategory);
+                IEnumerable<ProductCategory> productCategories = dataRepository.GetAllProductCategories();
                 Assert.AreEqual(5, productCategories.ToList().Count);
             }
 
             [TestMethod]
             public void DeleteProductCategoryTest()
             {
-                DataRepository.DeleteProductCategory(5);
-                IEnumerable<ProductCategory> productCategories = DataRepository.GetAllProductCategories();
+                DataRepository dataRepository = new DataRepository();
+                dataRepository.DeleteProductCategory(5);
+                IEnumerable<ProductCategory> productCategories = dataRepository.GetAllProductCategories();
                 Assert.AreEqual(4, productCategories.ToList().Count);
             }
 
@@ -46,8 +49,9 @@ namespace Tests
             [TestMethod]
             public void UpdateUpdateProductCategory()
             {
-                DataRepository.UpdateProductCategory("Mirek", 1);
-                IEnumerable<ProductCategory> scrapReasons = DataRepository.GetAllProductCategories();
+                DataRepository dataRepository = new DataRepository();
+                dataRepository.UpdateProductCategory("Mirek", 1);
+                IEnumerable<ProductCategory> scrapReasons = dataRepository.GetAllProductCategories();
                 Assert.AreEqual("Mirek", scrapReasons.ToList()[0].Name);
             }
         }

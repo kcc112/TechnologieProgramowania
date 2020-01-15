@@ -1,12 +1,13 @@
 ﻿using System.Windows;
+using ViewData.ViewModel;
 
-namespace ViewData.ViewModel
+namespace View
 {
     public class ViewModelHelper : IViewModelHelper
     {
         public void Show(string errorName, string errorMessage)
         {
-            MessageBox.Show(errorMessage, errorName, MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show(errorName, errorMessage, MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ServiceLayer
 {
-    public class DataRepository
+    public class DataRepository : IDataRepository
     {
 
         private ProductionDataContext db = new ProductionDataContext();
@@ -41,9 +41,11 @@ namespace ServiceLayer
             using (ProductionDataContext db = new ProductionDataContext())
             {
                 ProductCategory output = db.ProductCategories.SingleOrDefault(productCategory => productCategory.ProductCategoryID == id);
-
-                db.ProductCategories.DeleteOnSubmit(output);
-                db.SubmitChanges();
+                if (output != null)
+                {
+                    db.ProductCategories.DeleteOnSubmit(output);
+                    db.SubmitChanges();
+                }
             }
         }
     }

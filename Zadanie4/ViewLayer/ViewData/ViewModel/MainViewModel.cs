@@ -12,16 +12,6 @@ namespace ViewData.ViewModel
     {
         public MainViewModel()
         {
-            viewModelHelper = new ViewModelHelper();
-            DataLayer = new DataRepository();
-            FetchDataCommand = new RelayCommand(() => DataLayer = new DataRepository());
-            AddCategoryCommand = new RelayCommand(AddCategory);
-            RemoveCategoryCommand= new RelayCommand(RemoveCategory);
-        }
-
-        public MainViewModel(IViewModelHelper _IViewModelHelper)
-        {
-            viewModelHelper = _IViewModelHelper;
             DataLayer = new DataRepository();
             FetchDataCommand = new RelayCommand(() => DataLayer = new DataRepository());
             AddCategoryCommand = new RelayCommand(AddCategory);
@@ -51,7 +41,7 @@ namespace ViewData.ViewModel
             }
         }
 
-        public DataRepository DataLayer
+        public IDataRepository DataLayer
         {
             get { return m_DataLayer; }
             set
@@ -76,7 +66,7 @@ namespace ViewData.ViewModel
 
             if (productCategory.Name == null)
             {
-                viewModelHelper.Show("FirstName and Lastname cannot be empty", "Adding new Person error");
+                ViewModelHelper.Show("FirstName and Lastname cannot be empty", "Adding new Person error");
             }
             else
             {
@@ -91,7 +81,14 @@ namespace ViewData.ViewModel
         {
             Task.Run(() =>
             {
-                m_DataLayer.DeleteProductCategory(ID);
+                if (ID == 0)
+                {
+                    ViewModelHelper.Show("ID cannot be 0", "Adding new Person error");
+                }
+                else
+                {
+                    m_DataLayer.DeleteProductCategory(ID);
+                }
             });
         }
 
@@ -110,11 +107,11 @@ namespace ViewData.ViewModel
             get; private set;
         }
 
-        private DataRepository m_DataLayer;
+        private IDataRepository m_DataLayer;
         private ProductCategory m_ProductCategory;
         private ObservableCollection<ProductCategory> m_ProductCategories;
 
-        public IViewModelHelper viewModelHelper;
+        public IViewModelHelper ViewModelHelper { get; set; }
         public string Name { get; set; }
         public int ID { get; set; }
     }
