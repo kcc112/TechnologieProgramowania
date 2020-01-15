@@ -47,12 +47,30 @@ namespace Tests
 
 
             [TestMethod]
-            public void UpdateUpdateProductCategory()
+            public void UpdateUpdateProductCategoryTest()
             {
                 DataRepository dataRepository = new DataRepository();
                 dataRepository.UpdateProductCategory("Mirek", 1);
                 IEnumerable<ProductCategory> scrapReasons = dataRepository.GetAllProductCategories();
                 Assert.AreEqual("Mirek", scrapReasons.ToList()[0].Name);
+            }
+
+            [TestMethod]
+            public void GetProductCategoryByNameTest()
+            {
+                DataRepository dataRepository = new DataRepository();
+                dataRepository.UpdateProductCategory("Mirek", 1);
+                ProductCategory scrapReasons = dataRepository.GetProductCategoryByName("Mirek");
+                Assert.AreEqual("Mirek", scrapReasons.Name);
+            }
+
+            [TestMethod]
+            public void GetProductCategoryByIdTest()
+            {
+                DataRepository dataRepository = new DataRepository();
+                dataRepository.UpdateProductCategory("Mirek", 1);
+                ProductCategory scrapReasons = dataRepository.GetProductCategoryById(1);
+                Assert.AreEqual("Mirek", scrapReasons.Name);
             }
         }
     }

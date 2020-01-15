@@ -16,6 +16,14 @@ namespace ServiceLayer
             return output;
         }
 
+        public ProductCategory GetProductCategoryByName(string name)
+        {
+            using (ProductionDataContext db = new ProductionDataContext())
+            {
+                return db.ProductCategories.SingleOrDefault(productCategory => productCategory.Name == name);
+            }
+        }
+
         public void AddProductCategory(ProductCategory productCategory)
         {
             using (ProductionDataContext db = new ProductionDataContext())

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ViewData.ViewModel;
 
@@ -10,32 +9,44 @@ namespace ViewDataTest
     {
 
         [TestMethod]
-        public void DataLayerTestMethod()
+        public void AddCategoryTest()
         {
+            IViewModelHelper viewModelHelper = new ViewModelHelperFake();
             MainViewModel viewModel = new MainViewModel();
-            Assert.IsNotNull(viewModel.DataLayer);
+            viewModel.ViewModelHelper = viewModelHelper;
+            viewModel.Name = null;
+            viewModel.AddCategoryCommand.Execute(null);
+            Assert.AreEqual(4, viewModel.DataLayer.GetAllProductCategories().ToList().Count);
+
         }
 
         [TestMethod]
-        public void RemoveCategoryTestMethod()
+        public void RemoveCategoryTest()
         {
             IViewModelHelper viewModelHelper = new ViewModelHelperFake();
             MainViewModel viewModel = new MainViewModel();
             viewModel.ViewModelHelper = viewModelHelper;
             viewModel.RemoveCategoryCommand.Execute(null);
-            viewModel.FetchDataCommand.Execute(null);
-            Assert.AreEqual(5, viewModel.DataLayer.GetAllProductCategories().ToList().Count);
+            Assert.AreEqual(4, viewModel.DataLayer.GetAllProductCategories().ToList().Count);
         }
 
         [TestMethod]
-        public void AddCategoryTestMethod()
+        public void UpdateCategoryTest()
         {
             IViewModelHelper viewModelHelper = new ViewModelHelperFake();
             MainViewModel viewModel = new MainViewModel();
             viewModel.ViewModelHelper = viewModelHelper;
-            viewModel.AddCategoryCommand.Execute(null);
-            viewModel.FetchDataCommand.Execute(null);
-            Assert.AreEqual(5, viewModel.DataLayer.GetAllProductCategories().ToList().Count);
+            viewModel.Name = "Test";
+            viewModel.ID = 1;
+            viewModel.UpdateCategoryCommand.Execute(null);
+            Assert.IsNull(viewModel.DataLayer.GetProductCategoryByName("Test"));
+        }
+
+        [TestMethod]
+        public void DataLayerTestMethod()
+        {
+            MainViewModel viewModel = new MainViewModel();
+            Assert.IsNotNull(viewModel.DataLayer);
         }
 
 
@@ -44,18 +55,7 @@ namespace ViewDataTest
         {
             MainViewModel viewModel = new MainViewModel();
             viewModel.FetchDataCommand.Execute(null);
-            Assert.AreEqual(5, viewModel.ProductCategories.Count);
-        }
-
-        [TestMethod]
-        public void UpdateCategoryTestMethod()
-        {
-            IViewModelHelper viewModelHelper = new ViewModelHelperFake();
-            MainViewModel viewModel = new MainViewModel();
-            viewModel.ViewModelHelper = viewModelHelper;
-            viewModel.UpdateCategoryCommand.Execute(null);
-            viewModel.FetchDataCommand.Execute(null);
-            Assert.AreEqual(5, viewModel.DataLayer.GetAllProductCategories().ToList().Count);
+            Assert.AreEqual(4, viewModel.ProductCategories.Count);
         }
 
     }

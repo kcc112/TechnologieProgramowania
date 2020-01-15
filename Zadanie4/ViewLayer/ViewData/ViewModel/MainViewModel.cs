@@ -10,6 +10,7 @@ namespace ViewData.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+
         public MainViewModel()
         {
             DataLayer = new DataRepository();
@@ -66,7 +67,7 @@ namespace ViewData.ViewModel
                 rowguid = Guid.NewGuid()
             };
 
-            if (productCategory.Name == null)
+            if (productCategory.Name == null || productCategory.Name == "")
             {
                 ViewModelHelper.Show("Name cannot be empty", "Add");
             }
@@ -75,21 +76,6 @@ namespace ViewData.ViewModel
                 Task.Run(() =>
                 {
                     m_DataLayer.AddProductCategory(productCategory);
-                });
-            }
-        }
-
-        public void UpdateCategory()
-        {
-            if (Name == null || ID == 0)
-            {
-                ViewModelHelper.Show("FirstName and ID cannot be empty", " Update");
-            }
-            else
-            {
-                Task.Run(() =>
-                {
-                    m_DataLayer.UpdateProductCategory(Name, ID);
                 });
             }
         }
@@ -120,6 +106,21 @@ namespace ViewData.ViewModel
             ViewModelHelper.ShowInfo();
         }
 
+        public void UpdateCategory()
+        {
+            if (Name == null || Name == "" || ID == 0)
+            {
+                ViewModelHelper.Show("Category name cannot be empty", "Update category error");
+            }
+            else
+            {
+                Task.Run(() =>
+                {
+                    m_DataLayer.UpdateProductCategory(Name, ID);
+                });
+            }
+        }
+
         public RelayCommand FetchDataCommand
         {
             get; private set;
@@ -144,6 +145,7 @@ namespace ViewData.ViewModel
         {
             get; private set;
         }
+
 
         private IDataRepository m_DataLayer;
         private ProductCategory m_ProductCategory;
