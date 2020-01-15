@@ -12,20 +12,12 @@ namespace ViewData.ViewModel
     {
         public MainViewModel()
         {
-            viewModelHelper = new ViewModelHelper();
             DataLayer = new DataRepository();
             FetchDataCommand = new RelayCommand(() => DataLayer = new DataRepository());
             AddCategoryCommand = new RelayCommand(AddCategory);
-            RemoveCategoryCommand= new RelayCommand(RemoveCategory);
-        }
-
-        public MainViewModel(IViewModelHelper _IViewModelHelper)
-        {
-            viewModelHelper = _IViewModelHelper;
-            DataLayer = new DataRepository();
-            FetchDataCommand = new RelayCommand(() => DataLayer = new DataRepository());
-            AddCategoryCommand = new RelayCommand(AddCategory);
-            RemoveCategoryCommand= new RelayCommand(RemoveCategory);
+            RemoveCategoryCommand = new RelayCommand(RemoveCategory);
+            InfoCategoryCommand = new RelayCommand(Info);
+            UpdateCategoryCommand = new RelayCommand(UpdateCategory);
         }
        
         public ObservableCollection<ProductCategory> ProductCategories
@@ -51,7 +43,7 @@ namespace ViewData.ViewModel
             }
         }
 
-        public DataRepository DataLayer
+        public IDataRepository DataLayer
         {
             get { return m_DataLayer; }
             set
@@ -76,7 +68,7 @@ namespace ViewData.ViewModel
 
             if (productCategory.Name == null)
             {
-                viewModelHelper.Show("FirstName and Lastname cannot be empty", "Adding new Person error");
+                ViewModelHelper.Show("Name cannot be empty", "Add");
             }
             else
             {
@@ -87,12 +79,45 @@ namespace ViewData.ViewModel
             }
         }
 
+        public void UpdateCategory()
+        {
+            if (Name == null || ID == 0)
+            {
+                ViewModelHelper.Show("FirstName and ID cannot be empty", " Update");
+            }
+            else
+            {
+                Task.Run(() =>
+                {
+                    m_DataLayer.UpdateProductCategory(Name, ID);
+                });
+            }
+        }
+
         public void RemoveCategory()
         {
             Task.Run(() =>
             {
-                m_DataLayer.DeleteProductCategory(ID);
+                if (ID == 0)
+                {
+                    ViewModelHelper.Show("ID cannot be 0", "Remove");
+                }
+                else
+                {
+                    m_DataLayer.DeleteProductCategory(ID);
+                }
             });
+        }
+
+        public void Info()
+        {
+            Task.Run(() =>
+            {
+                ProductCategories = new ObservableCollection<ProductCategory>();
+                ProductCategories.Add(m_DataLayer.GetProductCategoryById(ID));
+               ProductCategory = m_DataLayer.GetProductCategoryById(ID);
+            });
+            ViewModelHelper.ShowInfo();
         }
 
         public RelayCommand FetchDataCommand
@@ -110,11 +135,21 @@ namespace ViewData.ViewModel
             get; private set;
         }
 
-        private DataRepository m_DataLayer;
+        public RelayCommand InfoCategoryCommand
+        {
+            get; private set;
+        }
+
+        public RelayCommand UpdateCategoryCommand
+        {
+            get; private set;
+        }
+
+        private IDataRepository m_DataLayer;
         private ProductCategory m_ProductCategory;
         private ObservableCollection<ProductCategory> m_ProductCategories;
 
-        public IViewModelHelper viewModelHelper;
+        public IViewModelHelper ViewModelHelper { get; set; }
         public string Name { get; set; }
         public int ID { get; set; }
     }
