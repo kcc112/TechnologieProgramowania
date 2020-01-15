@@ -23,13 +23,16 @@ namespace ViewDataTest
         [TestMethod]
         public void RemoveCategoryTest()
         {
-            
+            IViewModelHelper viewModelHelper = new ViewModelHelperFake();
+            MainViewModel viewModel = new MainViewModel(viewModelHelper);
+            viewModel.RemoveCategoryCommand.Execute(null);
+            Assert.AreEqual(3, viewModel.DataLayer.GetAllProductCategories().ToList().Count);
         }
 
         [TestMethod]
         public void UpdateCategoryTest()
         {
-            
+
         }
     }
 }
